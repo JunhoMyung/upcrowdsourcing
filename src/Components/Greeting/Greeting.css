@@ -1,0 +1,49 @@
+.greeting {
+    padding: 50px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.prev {
+    background: #DDDDDD;
+    border-radius: 8px;
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    width: 189px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.next_prev {
+    padding: 10px;
+}
+
+.next {
+    background: #75C8E2;
+    border-radius: 8px;
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    width: 189px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.next:hover {
+    background: #93d8ec;
+}
+
+.my-modal {
+    height: 10000px;
+}
