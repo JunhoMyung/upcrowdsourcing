@@ -14,7 +14,7 @@ export default class main extends Component {
         this.closeGreeting1 = this.closeGreeting1.bind(this)
         this.closeGreeting2 = this.closeGreeting2.bind(this)
         this.handleClink = this.handleClink.bind(this)
-        this.socket = io("http://ec2-3-35-132-164.ap-northeast-2.compute.amazonaws.com");
+        this.socket = io("https://ec2-3-35-132-164.ap-northeast-2.compute.amazonaws.com");
     }
 
     closeGreeting1 = () => {
