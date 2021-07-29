@@ -1,53 +1,59 @@
 import React, { Component } from 'react'
-import Greeting from './Greeting/Greeting'
 import Chat from './Chat/Chat'
 import { io } from "socket.io-client"
+import Lobby from './Lobby/Lobby'
 
 export default class main extends Component {
 
     state = {
-        greeting: true,
-        greeting2: false,
+        progress: {
+            lobby: true,
+            accept: false,
+            chat: false,
+        },
         msgList: [],
-        // timestampList: [],
-        clientList: []
+        nameList: [],
+        playerName: "",
+        playerList: [],
     }
 
     constructor(props) {
         super(props)
-        this.closeGreeting1 = this.closeGreeting1.bind(this)
-        this.closeGreeting2 = this.closeGreeting2.bind(this)
         this.socket = io("ec2-3-36-126-54.ap-northeast-2.compute.amazonaws.com:8080");
-        this.socket.on("receiveMsg", (Name, Msg /*TIMESTAMP*/) => {
+        this.socket.on("receiveMsg", (Msg) => {
             var temp1 = [...this.state.msgList]
-            temp1.push(Msg)
-            this.setState({ msgList: temp1})
-            console.log(this.state.msgList)
+            var temp2 = [...this.state.nameList]
+            temp1.push(Msg["msg"])
+            temp2.push(Msg["name"])
+            this.setState({ msgList: temp1, nameList: temp2 })
+        })
+        this.socket.on("name", (name) => {
+            this.setState({ playerName: name })
+        })
+        this.socket.on("changeMember", (participantList) => {
+            this.setState({ playerList: participantList })
+        })
+        this.socket.on("full", () => {
+            this.setState({ progress: {lobby: false, chat: true} })
         })
     }
-
-    closeGreeting1 = () => {
-        this.setState({ greeting: false, greeting2: true })
-    }
-
-    closeGreeting2 = () => {
-        this.setState({ greeting2: false })
-    }
-
     render() {
         return (
             <div>
+                <Lobby
+                    process = {this.state.progress["lobby"]}
+                    socket = {this.socket}
+                    playerList = {this.state.playerList}
+                    progress = {this.state.progress}
+                />
                 <Chat
+                    process = {this.state.progress["chat"]}
                     handler = {(Name, Msg) => {
                         this.socket.emit("send", Name, Msg)
                     }}
                     msgList = {this.state.msgList}
-                />
-                <Greeting
-                    open = {this.state.greeting}
-                    page2 = {this.state.greeting2}
-                    handleNext = {this.closeGreeting1}
-                    handleClose = {this.closeGreeting2}
+                    nameList = {this.state.nameList}
+                    name = {this.state.playerName}
                 />
             </div>
         )

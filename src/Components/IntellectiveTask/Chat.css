@@ -1,0 +1,179 @@
+.NavBar {
+    height: 10vh;
+    background: white;
+    border-bottom: solid 1px #999999;
+    display: flex;
+    align-items: center;
+}
+.Title { 
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    width: 50vw;
+    align-items: left;
+}
+.Space {
+    width: 30vw;
+}
+.Instruction {
+    font-size: 20px;
+}
+.ChatMain {
+    margin-left: 15%;
+    background: white;
+    width: 70%;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+}
+
+.InstructionBtn {
+    background: #75C8E2;
+    border-radius: 8px;
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    width: 250px;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.InstructionBtn:hover {
+    background: #93d8ec
+}
+.MainTable {
+    height: 95%;
+}
+.ColumnOne {
+    width: 25vw;
+    border-right: solid 2px #999999;
+    vertical-align: top;
+}
+.heading1 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    padding-left: 10px;
+}
+.ChatRecord {
+    height: 85%;
+    overflow-y: auto;
+    padding: 10px;
+    vertical-align: bottom;
+}
+.ChatBox {
+    height: 10%;
+}
+.TextBox {
+    position: absolute;
+    margin-left: 0.9vw;
+    bottom: 3%;
+    width: 43vw;
+    height: 40px;
+    background: #F0F0F0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+.TextInput {
+    margin-left: 1.2vw;
+    width: 35vw;
+}
+.emoji {
+    margin-left: 1.5vw;
+}
+.send {
+    height: 2.8vh;
+    margin-left: 0.8vw;
+    cursor: pointer;
+}
+.myPic {
+    width: 40px;
+    height: 40px;
+}
+.chatTable {
+    width: 43vw;
+}
+.myName {
+    width: 40px;
+    vertical-align: top;
+}
+.yourName {
+    width: 40px;
+    vertical-align: top;
+}
+.myMsg{
+    vertical-align: top;
+    text-align: left;
+    display: flex;
+    justify-content: right;
+    float: right;
+    margin-right: 10px;
+}
+.myMsgDiv{
+    max-width: 30vw;
+    vertical-align: top;
+    background: #EEEEEE;
+    border-radius: 8px 0px 8px 8px;
+    padding: 7px;
+    word-wrap: break-word;
+    white-space:pre-wrap;
+}
+.yourMsg{
+    display: flex;
+    vertical-align: top;
+    text-align: left;
+    margin-left: 10px;
+}
+.yourMsgDiv{
+    max-width: 30vw;
+    background: #EEEEEE;
+    border-radius: 0px 8px 8px 8px;
+    padding: 7px;
+    word-wrap: break-word;
+    white-space:pre-wrap;
+}
+.nameMe {
+    font-weight: bold;
+    text-align: right;
+}
+.nameYou {
+    font-weight: bold;
+    text-align: left;
+}
+.firstColumn {
+    margin: auto;
+    width: 70%;
+}
+.Timer{
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+}
+.blue {
+    color: #75C8E2;
+    font-weight: bold;
+}
+.participant_pic {
+    width: 40px;
+}
+.participant_name {
+    font-family: "Roboto";
+    font-style: normal;
+    font-size: 18px;
+    padding-left: 10px;
+}
+.heading2 { 
+    font-family: "Roboto";
+    font-style: normal;
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
