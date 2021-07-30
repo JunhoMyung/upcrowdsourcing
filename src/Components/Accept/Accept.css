@@ -1,0 +1,77 @@
+.acceptBtn {
+    background: #75C8E2;
+    border-radius: 8px;
+    font-family: "Roboto", sans-serif;
+    position: relative;
+    width: 250px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.acceptBtn:hover {
+    background: #93d8ec;
+}
+
+.time {
+    font-size: 30px;
+}
+.acceptTimer{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5vh;
+}
+
+.acceptTable {
+    width: 53.3vw;
+    height: 55vh;
+}
+.acceptBody {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    text-align: center;
+    padding-bottom: 3vh;
+}
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.centerBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 4vh;
+}
+.acceptDone {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    text-align: center;
+    padding-bottom: 10vh;
+}
+.readingTitle {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    text-align: center;
+    padding-top: 5vh;
+}
+.readingSubtitle {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 4vh;
+}

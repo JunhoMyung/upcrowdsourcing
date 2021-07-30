@@ -1,26 +1,73 @@
 import React, { Component } from 'react'
-import './Chat.css'
 import InputBase from '@material-ui/core/InputBase';
-import SendBtn from "./SendBtn.png"
+import SendBtn from "../SendBtn.png"
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
-import Bunny from "./Bunny.png"
-import Kitty from "./Kitty.png"
-import Puppy from "./Puppy.png"
-import Squirrel from "./Squirrel.png"
+import Bunny from "../Bunny.png"
+import Kitty from "../Kitty.png"
+import Puppy from "../Puppy.png"
+import Squirrel from "../Squirrel.png"
 import Countdown from 'react-countdown';
+import './Intellective.css'
 
 export default class Chat extends Component {
 
     state = {
         msg: "",
+        answer: "",
+        initialTime: "",
     }
 
     constructor(props) {
         super(props)
-        this.ref = React.createRef();
         this.sendMsg = this.sendMsg.bind(this)
+        this.sendAns = this.sendAns.bind(this)
         this.keyPress = this.keyPress.bind(this)
+        this.keyPressAns = this.keyPressAns.bind(this)
     }
+
+    prevAns = () => {
+        var temp = []
+        var ans = [85, 13, 21, 277, 121]
+        if (this.props.prevAns.length !== 0){
+            temp.push(
+                <tr>
+                    <td></td>
+                    <td>Your Answer</td>
+                    <td>Correct Answer</td>
+                </tr>
+            )
+        }
+        for (var i = 0; i < this.props.prevAns.length; i ++){
+            temp.push(
+                <tr>
+                    <td>
+                        Q{i + 1}: 
+                    </td>
+                    <td>
+                        {this.props.prevAns[i]}
+                    </td>
+                    <td>
+                        {ans[i]}
+                    </td>
+                </tr>
+                
+            )
+        }
+        if(this.props.prevAns.length === 5){
+            this.props.finish()
+        }
+        return (temp)
+    }
+
+    // scrollToBottom = () => {
+    //     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+    // }
+      
+    // componentDidUpdate() {
+    //     if(this.props.msgList.length !== 0){
+    //         this.scrollToBottom();
+    //     }
+    // }
     
     sendMsg = () => {
         if (this.state.msg !== ""){
@@ -35,6 +82,18 @@ export default class Chat extends Component {
         }
     }
     
+    keyPressAns(e){
+        if(e.keyCode === 13){
+            this.sendAns()
+        }
+    }
+    sendAns = () => {
+        if (this.state.answer !== ""){
+            this.props.submit(this.state.answer)
+        }
+        this.setState({ answer: "" })
+    }
+
     participants() {
         var participants = []
         var list = {Bunny: Bunny, Kitty: Kitty, Puppy: Puppy, Squirrel: Squirrel}
@@ -67,10 +126,11 @@ export default class Chat extends Component {
 
     renderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {
-          return (
-              <>
-              </>
-          );
+            this.props.finish()
+            return (
+                <>
+                </>
+            );
         } else {
             if (seconds >= 10){
                 return (
@@ -117,8 +177,7 @@ export default class Chat extends Component {
                             <td className = "yourMsg">
                                 <div className = "yourMsgDiv">
                                     {this.props.msgList[i]}
-                                </div>
-                                        
+                                </div>        
                             </td>
                             <td className = "myName">
                             </td>
@@ -346,6 +405,13 @@ export default class Chat extends Component {
         return(msg)
     }
 
+    renderQuestion = () => {
+        const questions = ["Question 1: What percentage of the U.S. population has access to the Internet?", "Question 2: Estimate the number of states that border Canada.", "Question 3: What percentage of the U.S. population is illiterate?", "Question 4: How long is the Grand Canyon in miles?", "Question 5: How many medals have U.S. won in the Rio 2016 Summer Olympics?"]
+        return (
+            questions[this.props.questionNo]
+        )
+    }
+
     render() {
         if (this.props.process){
             
@@ -357,7 +423,7 @@ export default class Chat extends Component {
                                 <tr>
                                     <td className = "Title"> 
                                         {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                        Round 1: Creating Google Ads
+                                        Round {this.props.round}: Intellective Task
                                     </td>
                                     <td className = "Space"></td>
                                     <td className = "Instruction">
@@ -371,21 +437,59 @@ export default class Chat extends Component {
                         <table className = "MainTable">
                             <tbody>
                                 <tr>
+                                    <td className = "question" colSpan = {2}>
+                                        {this.renderQuestion()}
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td className = "ColumnOne">
-                                        <table className = "firstColumn">
+                                        <table className = "firstColumnInt">
                                             <tbody>
                                                 <tr>
-                                                    <td className = "Timer" colSpan = {2}>
-                                                        Time Left : <span className = "blue"><Countdown date={Date.now() + 420000} renderer={this.renderer} /></span>
+                                                    <td className = "TimerInt" colSpan = {2}>
+                                                        Time Left : <span className = "blue"><Countdown date={this.props.time + 300000} renderer={this.renderer} /></span>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td colSpan = {2} className = "heading2">
-                                                        <br/>
+                                                    <td colSpan = {2} className = "heading2Int">
                                                         Participants
                                                     </td>
                                                 </tr>
                                                 {this.participants()}
+                                                <tr>
+                                                    <td colSpan = {2} className = "heading2Int">
+                                                        Previous Answers
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colSpan = {2} className = "prevAnswer">
+                                                        <table className = "prevAnsTable">
+                                                            <tbody>
+                                                                {this.prevAns()}
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colSpan = {2} className = "heading2Int">
+                                                        Submit Answer
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colSpan = {2}>
+                                                        <span className = "textBoxInt">
+                                                            <InputBase
+                                                                className = "AnswerInput"
+                                                                placeholder="Answer Here"
+                                                                inputProps={{ 'aria-label': 'naked' }}
+                                                                onChange = {event => this.setState({answer: event.target.value})}
+                                                                onKeyDown={this.keyPressAns}
+                                                                value={this.state.answer}
+                                                            />
+                                                            <img src={SendBtn} alt = "" className='send' onClick = {this.sendAns}/>
+                                                        </span>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </td>
@@ -399,6 +503,9 @@ export default class Chat extends Component {
                                                     {this.renderMsg()}
                                                 </tbody>
                                             </table>
+                                            {/* <div style={{ float:"left", clear: "both" }}
+                                                ref={(el) => { this.messagesEnd = el; }}>
+                                            </div> */}
                                         </div>
                                         <div className = "ChatBox">
                                             <span className = "TextBox">

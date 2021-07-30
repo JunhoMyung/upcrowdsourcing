@@ -4,25 +4,28 @@
     background: white;
     width: 60vw;
     height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: "Roboto";
+    font-style: normal;
+    font-size: 24px;
     border-radius: 20px;
+}
+.lobbyTable{
+    width: 60vw;
+    height: 60vh;
 }
 .background {
     height: 100vh;
 }
-.waitingTitle {
-    font-family: "Roboto";
-    font-style: normal;
-    font-size: 24px;
-    line-height: 28px;
+.centerLobby {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8vh;
 }
-.waitingNumber {
-    font-family: "Roboto";
-    font-style: normal;
+.bodyLobby {
+    padding-bottom: 12vh;
     font-size: 24px;
-    line-height: 28px;
 }

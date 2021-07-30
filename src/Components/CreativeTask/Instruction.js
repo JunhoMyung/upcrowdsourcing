@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
-import Greeting from '../Greeting/Greeting'
-import './Lobby.css'
-import Accept from '../Accept/Accept'
-import { CountdownCircleTimer } from "react-countdown-circle-timer"
+import InstructionModal from './InstructionModal'
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonIcon from '@material-ui/icons/Person';
+import Modal from 'react-bootstrap/Modal'
+import { CountdownCircleTimer } from "react-countdown-circle-timer"
 
-export default class Lobby extends Component {
+export default class Instruction extends Component {
 
     state = {
         greeting: true,
         greeting2: false,
         greeting3: false,
-        accept: false,
     }
 
     constructor(props) {
@@ -22,17 +20,10 @@ export default class Lobby extends Component {
         this.prevGreeting2 = this.prevGreeting2.bind(this)
         this.nextGreeting3 = this.nextGreeting3.bind(this)
         this.prevGreeting3 = this.prevGreeting3.bind(this)
-        this.closeAccept1 = this.closeAccept1.bind(this)
-        this.props.socket.on("full", () => {
-            this.setState({ accept: true })
-        })
     }
 
     nextGreeting1 = () => {
         this.setState({ greeting: false, greeting2: true })
-        if (this.props.name === ""){
-            this.props.socket.emit("newMember")
-        }
     }
 
     prevGreeting2 = () => {
@@ -49,30 +40,7 @@ export default class Lobby extends Component {
 
     nextGreeting3 = () => {
         this.setState({ greeting3: false })
-        this.props.socket.emit("ready")
-    }
-
-    closeAccept1 = () => {
-        this.props.socket.emit("accept")
-    }
-
-    renderTime = (time) => {
-        if(time > 60){
-            return(
-                <div className="time-wrapper">
-                    <div className="time">{Math.floor(time/60)}</div>
-                    <div>minutes</div>
-                </div>
-            )
-        }
-        else{
-            return(
-                <div className="time-wrapper">
-                    <div className="time">{time}</div>
-                    <div>seconds</div>
-                </div>
-            )
-        }
+        this.props.socket.emit("Creative-Instruction")
     }
 
     renderParticipant = () => {
@@ -118,12 +86,33 @@ export default class Lobby extends Component {
         }
     }
 
+    renderTime = (time) => {
+        if (time > 60){
+            return (
+                <div className="time-wrapper">
+                  <div className="time">{Math.round(time/60)}</div>
+                  <div>minutes</div>
+                </div>
+              );
+        }
+        else if (time === 0){
+            this.props.handleReading()
+            return(<></>)
+        }
+        return (
+          <div className="time-wrapper">
+            <div className="time">{time}</div>
+            <div>seconds</div>
+          </div>
+        );
+    };
+
+
     render() {
         if (this.props.process){
             return (
                 <>
-                    <Greeting
-                        name = {this.props.name}
+                    <InstructionModal
                         open = {this.state.greeting}
                         page2 = {this.state.greeting2}
                         page3 = {this.state.greeting3}
@@ -133,11 +122,52 @@ export default class Lobby extends Component {
                         handleNext3 = {this.nextGreeting3}
                         handlePrev3 = {this.prevGreeting3}
                     />
-                    <Accept
-                        open = {this.state.accept}
-                        handleNext = {this.closeAccept1}
-                        accept = {this.props.accept}
-                    />
+                    <Modal
+                        show={this.props.reading}
+                        onHide={this.props.handleReading}
+                        backdrop="static"
+                        keyboard={false}
+                        centered
+                        size="lg"
+                    >
+                        <Modal.Body>
+                            <table className = "acceptTable">
+                                <tbody>
+                                    <tr>
+                                        <td className = "readingTitle">
+                                            Reading Time
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className = "acceptTimer">
+                                            <CountdownCircleTimer
+                                                isPlaying
+                                                duration={1} //130
+                                                colors={[
+                                                ['#004777', 0.33],
+                                                ['#F7B801', 0.33],
+                                                ['#A30000', 0.33],
+                                                ]}
+                                            >
+                                                {({ remainingTime }) => this.renderTime(remainingTime)}
+                                            </CountdownCircleTimer>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className = "readingSubtitle">
+                                            Now, you have 2 minutes to read about the product your group is going to advertise.
+                                            <br/>
+                                            <br/>
+                                            <a href="https://www.kickstarter.com/projects/takween/takween?ref=section-design-tech-projectcollection-6-staff-picks-newest" target="_blank" rel="noreferrer">
+                                                Click here 
+                                            </a>
+                                            &nbsp;and learn about the special features of this product!
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </Modal.Body>       
+                    </Modal>
                     <div style = {{ backgroundColor: "#FAFAFA"}} className = "background">
                         <div className = "NavBar">
                             <table>
@@ -145,7 +175,7 @@ export default class Lobby extends Component {
                                     <tr>
                                         <td className = "Title"> 
                                             {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            Welcome!
+                                            Round {this.props.round}: Creative Task
                                         </td>
                                         <td className = "Space"></td>
                                         <td className = "Instruction">
@@ -158,21 +188,6 @@ export default class Lobby extends Component {
                         <div className = "Waiting">
                             <table className = "lobbyTable">
                                 <tbody>
-                                    <tr>
-                                        <td className = "centerLobby">
-                                            <CountdownCircleTimer
-                                                isPlaying
-                                                duration={630}
-                                                colors={[
-                                                ['#004777', 0.33],
-                                                ['#F7B801', 0.33],
-                                                ['#A30000', 0.33],
-                                                ]}
-                                            >
-                                                {({ remainingTime }) => this.renderTime(remainingTime)}
-                                            </CountdownCircleTimer>
-                                        </td>
-                                    </tr>
                                     <tr>
                                         <td className = "bodyLobby">
                                             <br/>
@@ -189,10 +204,9 @@ export default class Lobby extends Component {
                 </>
             )
         }
-        else {
+        else{
             return(
-                <>
-                </>
+                <></>
             )
         }
     }

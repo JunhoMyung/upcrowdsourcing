@@ -1,59 +1,8 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/Modal'
-import './Greeting.css'
-import InputBase from '@material-ui/core/InputBase';
-import Bunny from "../Bunny.png"
-import Kitty from "../Kitty.png"
-import Puppy from "../Puppy.png"
-import Squirrel from "../Squirrel.png"
-import Notification from "../notification.png"
+import Bunny from '../Example.png'
 
-
-export default class Greeting extends Component {
-
-    state = {
-        Mturk: "",
-        participants: {
-            Bunny: Bunny,
-            Kitty: Kitty,
-            Puppy: Puppy,
-            Squirrel: Squirrel
-        }
-    }
-
-    handleNext1 = () => {
-        if (this.state.Mturk === ""){
-            alert('You must enter your MTurk ID to proceed')
-        }
-        else {
-            this.props.handleNext1()
-        }
-    }
-
-    renderParticipants = () => {
-        var temp = []
-        for (var i = 0; i < 4; i ++){
-            var tempName = Object.keys(this.state.participants)[i]
-            if(tempName !== this.props.name){
-                if (temp.length === 2){
-                    temp.push(
-                        <span>
-                            and "{tempName}" <img className = "myPic" src={this.state.participants[tempName]} alt = ""/> &nbsp;
-                        </span>
-                    )
-                }
-                else {
-                    temp.push(
-                        <span>
-                            "{tempName}" <img className = "myPic" src={this.state.participants[tempName]} alt = ""/> &nbsp;
-                        </span>
-                    )
-                }
-                
-            }
-        }
-        return(temp)
-    }
+export default class Instruction extends Component {
 
     render() {
         return (
@@ -71,21 +20,16 @@ export default class Greeting extends Component {
                         <table className = "greetingTable">
                             <tbody>
                                 <tr>
-                                    <td className = "greetingBody" colSpan = {3}>
-                                        Thank you for participating in our task!
+                                    <td className = "greetingBody2" colSpan = {3}>
+                                        Welcome to the Creative Task session!
                                         <br/>
                                         <br/>
-                                        To begin with, please enter your MTurk ID below.
+                                        In this session, you will be asked to create a short Google Ads <b className = "blue">together</b> with your group members.
                                         <br/>
                                         <br/>
-                                        <InputBase
-                                            className = "MTurkID"
-                                            placeholder="Enter Your MTurk ID Here"
-                                            inputProps={{ 'aria-label': 'naked', style: { textAlign: 'center', fontSize: '19px' } }}
-                                            onChange = {event => this.setState({Mturk: event.target.value})}
-                                            autoFocus
-                                            value={this.state.Mturk}
-                                        />
+                                        An example of a Google Ad is shown below:
+                                        <br/>
+                                        <img className = "google" src={Bunny} alt = ""/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -95,9 +39,8 @@ export default class Greeting extends Component {
                                         </div>
                                     </td>
                                     <td className = "buffer">
-
                                     </td>
-                                    <td className = "nextTd" onClick = {this.handleNext1}>
+                                    <td className = "nextTd" onClick = {this.props.handleNext1}>
                                         <div className = "next">
                                             NEXT
                                         </div>
@@ -121,13 +64,13 @@ export default class Greeting extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
-                                        In this task, you will be placed in a group with three other participants. Together, you will solve two rounds of simple group tasks.
+                                        A typical Google Ad consists of a <b className = "blue">title</b> (max 30 characters) and a <b className = "blue">description</b> (max 90 characters)
                                         <br/>
                                         <br/>
-                                        During the task, you will be called "{this.props.name}" <img className = "myPic" src={this.state.participants[this.props.name]} alt = ""/>
+                                        Your job in this task is to create a Google Ads for a given product, by discussing with your group members.
                                         <br/>
                                         <br/>
-                                        Your group members are: {this.renderParticipants()}
+                                        We will give you <b className = "blue">2 minutes</b> to read about the product and another <br/><b className = "blue">7 minutes</b> to create the advertisement.
                                     </td>
                                 </tr>
                                 <tr>
@@ -163,17 +106,13 @@ export default class Greeting extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
-                                        The task will begin as soon as <b className = "blue">four members</b> join the room. 
+                                        When you begin the task, you will see a section called <b className = "blue">"Title"</b> and <b className = "blue">"Description"</b>. Type in your group's answer there. 
+                                        <br/>
+                                        <br/> 
+                                        Once your group is done deciding, please move on to the next step by clicking <b className = "blue">"Confirm"</b> button.
                                         <br/>
                                         <br/>
-                                        We will notify you when the task is ready, so please 
-                                        <br/>
-                                        <b className = "blue">allow notification</b> <img className = "notification" src={Notification} alt = ""/> for this website.
-                                        <br/>
-                                        <br/>
-                                        Detailed instruction of the tasks will be given at the later stage.
-                                        <br/>
-                                        Thank you again, and good luck!
+                                        If you have understood the instructions, please click "PROCEED".
                                     </td>
                                 </tr>
                                 <tr>
@@ -187,7 +126,7 @@ export default class Greeting extends Component {
                                     </td>
                                     <td className = "nextTd" onClick = {this.props.handleNext3}>
                                         <div className = "next">
-                                            BEGIN
+                                            PROCEED
                                         </div>
                                     </td>
                                 </tr>

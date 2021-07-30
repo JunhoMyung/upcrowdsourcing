@@ -1,59 +1,7 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/Modal'
-import './Greeting.css'
-import InputBase from '@material-ui/core/InputBase';
-import Bunny from "../Bunny.png"
-import Kitty from "../Kitty.png"
-import Puppy from "../Puppy.png"
-import Squirrel from "../Squirrel.png"
-import Notification from "../notification.png"
 
-
-export default class Greeting extends Component {
-
-    state = {
-        Mturk: "",
-        participants: {
-            Bunny: Bunny,
-            Kitty: Kitty,
-            Puppy: Puppy,
-            Squirrel: Squirrel
-        }
-    }
-
-    handleNext1 = () => {
-        if (this.state.Mturk === ""){
-            alert('You must enter your MTurk ID to proceed')
-        }
-        else {
-            this.props.handleNext1()
-        }
-    }
-
-    renderParticipants = () => {
-        var temp = []
-        for (var i = 0; i < 4; i ++){
-            var tempName = Object.keys(this.state.participants)[i]
-            if(tempName !== this.props.name){
-                if (temp.length === 2){
-                    temp.push(
-                        <span>
-                            and "{tempName}" <img className = "myPic" src={this.state.participants[tempName]} alt = ""/> &nbsp;
-                        </span>
-                    )
-                }
-                else {
-                    temp.push(
-                        <span>
-                            "{tempName}" <img className = "myPic" src={this.state.participants[tempName]} alt = ""/> &nbsp;
-                        </span>
-                    )
-                }
-                
-            }
-        }
-        return(temp)
-    }
+export default class Instruction extends Component {
 
     render() {
         return (
@@ -72,20 +20,13 @@ export default class Greeting extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
-                                        Thank you for participating in our task!
+                                        Welcome to the Intellective Task session!
                                         <br/>
                                         <br/>
-                                        To begin with, please enter your MTurk ID below.
+                                        In this session, you will be asked to solve a series of simple intellective questions <b className = "blue">together</b> with your group members. 
                                         <br/>
                                         <br/>
-                                        <InputBase
-                                            className = "MTurkID"
-                                            placeholder="Enter Your MTurk ID Here"
-                                            inputProps={{ 'aria-label': 'naked', style: { textAlign: 'center', fontSize: '19px' } }}
-                                            onChange = {event => this.setState({Mturk: event.target.value})}
-                                            autoFocus
-                                            value={this.state.Mturk}
-                                        />
+                                        You <b className = "blue">should not</b> find the answers on the Internet, but should <b className = "blue">discuss</b> with your group members to estimate the answer of each qustions.
                                     </td>
                                 </tr>
                                 <tr>
@@ -95,9 +36,8 @@ export default class Greeting extends Component {
                                         </div>
                                     </td>
                                     <td className = "buffer">
-
                                     </td>
-                                    <td className = "nextTd" onClick = {this.handleNext1}>
+                                    <td className = "nextTd" onClick = {this.props.handleNext1}>
                                         <div className = "next">
                                             NEXT
                                         </div>
@@ -121,13 +61,14 @@ export default class Greeting extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
-                                        In this task, you will be placed in a group with three other participants. Together, you will solve two rounds of simple group tasks.
+                                        Here are some examples of the type of intellective questions <br/>you are going to solve.
                                         <br/>
                                         <br/>
-                                        During the task, you will be called "{this.props.name}" <img className = "myPic" src={this.state.participants[this.props.name]} alt = ""/>
+                                        <br/>
+                                        "Estimatie the number of states that border the Gulf of Mexico."
                                         <br/>
                                         <br/>
-                                        Your group members are: {this.renderParticipants()}
+                                        "What is the height in feet of Mount McKinley?""
                                     </td>
                                 </tr>
                                 <tr>
@@ -163,17 +104,16 @@ export default class Greeting extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
-                                        The task will begin as soon as <b className = "blue">four members</b> join the room. 
+                                        When you begin the task, you will see a section called "submit answer" on the bottom left. Type in and submit answer there.
+                                        <br/>
+                                        <br/> 
+                                        <b className = "blue">Only one person</b> from the group should submit the answer.
                                         <br/>
                                         <br/>
-                                        We will notify you when the task is ready, so please 
-                                        <br/>
-                                        <b className = "blue">allow notification</b> <img className = "notification" src={Notification} alt = ""/> for this website.
+                                        You will be given 5 minutes to solve 5 questions.
                                         <br/>
                                         <br/>
-                                        Detailed instruction of the tasks will be given at the later stage.
-                                        <br/>
-                                        Thank you again, and good luck!
+                                        If you have understood the instructions, please click "PROCEED".
                                     </td>
                                 </tr>
                                 <tr>
@@ -187,7 +127,7 @@ export default class Greeting extends Component {
                                     </td>
                                     <td className = "nextTd" onClick = {this.props.handleNext3}>
                                         <div className = "next">
-                                            BEGIN
+                                            PROCEED
                                         </div>
                                     </td>
                                 </tr>
