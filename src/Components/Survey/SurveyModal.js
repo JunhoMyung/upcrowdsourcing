@@ -24,12 +24,13 @@ export default class Greeting extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
+                                        Round {this.props.round} is done!
                                         <br/>
                                         <br/>
-                                        To begin with, please enter your MTurk ID below.
+                                        Before moving on to the next step, we will take a very simple survey, which won't take more than 2 minutes.
                                         <br/>
                                         <br/>
-                                        
+                                        After answering the survey, you will be given some time to freely talk and get know each other.
                                     </td>
                                 </tr>
                                 <tr>
