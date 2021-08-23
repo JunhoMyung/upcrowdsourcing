@@ -1,10 +1,44 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/Modal'
+import './Survey.css'
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 export default class Greeting extends Component {
 
     state = {
-        
+        q1: null,
+        q2: null,
+        q3: null,
+        q4: null,
+        q5: null,
+        q6: null,
+        q7: null,
+    }
+
+    handleQ1 = (e) => {
+        this.setState({ q1: e.target.value })
+    }
+    handleQ2 = (e) => {
+        this.setState({ q2: e.target.value })
+    }
+    handleQ3 = (e) => {
+        this.setState({ q3: e.target.value })
+    }
+    handleQ4 = (e) => {
+        this.setState({ q4: e.target.value })
+    }
+    handleQ5 = (e) => {
+        this.setState({ q5: e.target.value })
+    }
+    handleQ6 = (e) => {
+        this.setState({ q6: e.target.value })
+    }
+    handleQ7 = (e) => {
+        this.setState({ q7: e.target.value })
     }
 
     render() {
@@ -59,20 +93,330 @@ export default class Greeting extends Component {
                     keyboard={false}
                     centered
                     size="lg"
-                    dialogClassName="border-radius-2"
                 >
                     <Modal.Body>
                     <table className = "greetingTable">
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
-                                        
-                                        <br/>
-                                        <br/>
-                                        
-                                        <br/>
-                                        <br/>
-
+                                        <span className = "surveyTitle">
+                                            Round {this.props.round} Survey
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <span className = "surveyQuestion">
+                                            Question 1: If I make a mistake in this team, it is held against me.
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <FormControl component="fieldset">
+                                            <RadioGroup row aria-label="position" name="position" value={this.state.q1} onChange={(e) => this.handleQ1(e)}>
+                                                <FormControlLabel
+                                                value="1"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="2"
+                                                control={<Radio color="primary" />}
+                                                label="Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="3"
+                                                control={<Radio color="primary" />}
+                                                label="Neither Agree or Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="4"
+                                                control={<Radio color="primary" />}
+                                                label="Agree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="5"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Agree"
+                                                labelPlacement="top"
+                                                />
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <span className = "surveyQuestion">
+                                            Question 2: Members of this team are able to bring up problems and tough issues.
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <FormControl component="fieldset">
+                                            <RadioGroup row aria-label="position" name="position" value={this.state.q2} onChange={(e) => this.handleQ2(e)}>
+                                                <FormControlLabel
+                                                value="1"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="2"
+                                                control={<Radio color="primary" />}
+                                                label="Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="3"
+                                                control={<Radio color="primary" />}
+                                                label="Neither Agree or Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="4"
+                                                control={<Radio color="primary" />}
+                                                label="Agree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="5"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Agree"
+                                                labelPlacement="top"
+                                                />
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <span className = "surveyQuestion">
+                                            Question 3: People on this team sometimes reject others for being different.
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <FormControl component="fieldset">
+                                            <RadioGroup row aria-label="position" name="position" value={this.state.q3} onChange={(e) => this.handleQ3(e)}>
+                                                <FormControlLabel
+                                                value="1"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="2"
+                                                control={<Radio color="primary" />}
+                                                label="Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="3"
+                                                control={<Radio color="primary" />}
+                                                label="Neither Agree or Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="4"
+                                                control={<Radio color="primary" />}
+                                                label="Agree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="5"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Agree"
+                                                labelPlacement="top"
+                                                />
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <span className = "surveyQuestion">
+                                            Question 4: It is safe to take a risk in this team.
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <FormControl component="fieldset">
+                                            <RadioGroup row aria-label="position" name="position" value={this.state.q4} onChange={(e) => this.handleQ4(e)}>
+                                                <FormControlLabel
+                                                value="1"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="2"
+                                                control={<Radio color="primary" />}
+                                                label="Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="3"
+                                                control={<Radio color="primary" />}
+                                                label="Neither Agree or Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="4"
+                                                control={<Radio color="primary" />}
+                                                label="Agree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="5"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Agree"
+                                                labelPlacement="top"
+                                                />
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <span className = "surveyQuestion">
+                                            Question 5: It is difficult to ask other members of this team for help.
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <FormControl component="fieldset">
+                                            <RadioGroup row aria-label="position" name="position" value={this.state.q5} onChange={(e) => this.handleQ5(e)}>
+                                                <FormControlLabel
+                                                value="1"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="2"
+                                                control={<Radio color="primary" />}
+                                                label="Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="3"
+                                                control={<Radio color="primary" />}
+                                                label="Neither Agree or Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="4"
+                                                control={<Radio color="primary" />}
+                                                label="Agree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="5"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Agree"
+                                                labelPlacement="top"
+                                                />
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <span className = "surveyQuestion">
+                                            Question 6: No one on this team would deliberately act in a way that undermines my efforts.
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <FormControl component="fieldset">
+                                            <RadioGroup row aria-label="position" name="position" value={this.state.q6} onChange={(e) => this.handleQ6(e)}>
+                                                <FormControlLabel
+                                                value="1"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="2"
+                                                control={<Radio color="primary" />}
+                                                label="Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="3"
+                                                control={<Radio color="primary" />}
+                                                label="Neither Agree or Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="4"
+                                                control={<Radio color="primary" />}
+                                                label="Agree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="5"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Agree"
+                                                labelPlacement="top"
+                                                />
+                                            </RadioGroup>
+                                        </FormControl>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <span className = "surveyQuestion">
+                                            Question 7: Working with members of this team, my unique skills and talents are valued and utilized.
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        <FormControl component="fieldset">
+                                            <RadioGroup row aria-label="position" name="position" value={this.state.q7} onChange={(e) => this.handleQ7(e)}>
+                                                <FormControlLabel
+                                                value="1"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="2"
+                                                control={<Radio color="primary" />}
+                                                label="Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="3"
+                                                control={<Radio color="primary" />}
+                                                label="Neither Agree or Disagree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="4"
+                                                control={<Radio color="primary" />}
+                                                label="Agree"
+                                                labelPlacement="top"
+                                                />
+                                                <FormControlLabel
+                                                value="5"
+                                                control={<Radio color="primary" />}
+                                                label="Strongly Agree"
+                                                labelPlacement="top"
+                                                />
+                                            </RadioGroup>
+                                        </FormControl>
                                     </td>
                                 </tr>
                                 <tr>

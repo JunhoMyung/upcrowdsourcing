@@ -65,10 +65,10 @@ export default class Instruction extends Component {
                                         <br/>
                                         <br/>
                                         <br/>
-                                        "Estimatie the number of states that border the Gulf of Mexico."
+                                        "Estimate the number of states that border the Gulf of Mexico."
                                         <br/>
                                         <br/>
-                                        "What is the height in feet of Mount McKinley?""
+                                        "What is the height in feet of Mount McKinley?"
                                     </td>
                                 </tr>
                                 <tr>

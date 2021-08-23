@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
 }
+
 .Title { 
     font-family: "Roboto";
     font-style: normal;
@@ -67,8 +68,28 @@
     padding: 10px;
     vertical-align: bottom;
 }
+.ChatRecordReply{
+    height: 80%;
+    overflow-y: auto;
+    padding: 10px;
+    vertical-align: bottom;
+}
 .ChatBox {
     height: 10%;
+}
+.ChatBoxReply {
+    height: 15%;
+}
+.TextBoxReply {
+    position: absolute;
+    margin-left: 0.9vw;
+    bottom: 3%;
+    width: 43vw;
+    height: 90px;
+    background: #F0F0F0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
 }
 .TextBox {
     position: absolute;
@@ -87,6 +108,7 @@
 }
 .emoji {
     margin-left: 1.5vw;
+    cursor: pointer;
 }
 .send {
     height: 2.8vh;
@@ -112,9 +134,31 @@
     vertical-align: top;
     text-align: left;
     display: flex;
-    justify-content: right;
-    float: right;
+    justify-content: flex-end;
     margin-right: 10px;
+}
+.myMsg2{
+    vertical-align: top;
+    text-align: left;
+    display: flex;
+    justify-content: flex-end;
+}
+.myMsgEmoji{
+    vertical-align: top;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+    font-size: 40px;
+    max-width: 28vw;
+}
+.myMsgEmojiFirst{
+    vertical-align: top;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 40px;
+    max-width: 28vw;
 }
 .myMsgDiv{
     max-width: 30vw;
@@ -130,6 +174,26 @@
     vertical-align: top;
     text-align: left;
     margin-left: 10px;
+}
+.yourMsg2{
+    display: flex;
+    vertical-align: top;
+    text-align: left;
+}
+.yourMsgEmoji{
+    display: flex;
+    vertical-align: top;
+    text-align: left;
+    margin-left: 10px;
+    font-size: 40px;
+    max-width: 28vw;
+}
+.yourMsgEmojiFirst{
+    display: flex;
+    vertical-align: top;
+    text-align: left;
+    max-width: 28vw;
+    font-size: 40px;
 }
 .yourMsgDiv{
     max-width: 30vw;
@@ -231,7 +295,7 @@
     border-radius: 8px;
     font-family: "Roboto", sans-serif;
     position: relative;
-    width: 13.8vw;
+    width: 100%;
     height: 40px;
     display: flex;
     align-items: center;
@@ -244,4 +308,121 @@
 }
 .confirm:hover {
     background: #93d8ec;
+}
+.myTimezone {
+    vertical-align: bottom;
+    font-size: 13px;
+    padding-right: 10px;
+    color: #777777;
+}
+.myTimezoneEmoji {
+    vertical-align: bottom;
+    font-size: 13px;
+    padding-right: 10px;
+    color: #777777;
+    padding-bottom: 10px;
+}
+.yourTimezone {
+    vertical-align: bottom;
+    font-size: 13px;
+    padding-left: 10px;
+    color: #777777;
+}
+.yourTimezoneEmoji {
+    vertical-align: bottom;
+    font-size: 13px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    color: #777777;
+}
+.hoverTd{
+    font-size:17px;
+    cursor: pointer;
+    color: #444444;
+    border: 1px solid black;
+    border-style: solid none;
+    width: 25px;
+    text-align: center;
+}
+.hoverTd:first-child {
+    padding: 2px 4px 3px 6px;
+    border-left-style: solid;
+    border-top-left-radius: 5px; 
+    border-bottom-left-radius: 5px;
+}
+.hoverTd:last-child {
+    padding: 2px 6px 3px 4px;
+    border-right-style: solid;
+    border-bottom-right-radius: 5px; 
+    border-top-right-radius: 5px; 
+}
+.hoverTd:hover{
+    background-color: #EEEEEE;
+}
+.hoverTable {
+    border-collapse: separate;
+    border-spacing: 0; 
+}
+.smile-plus{
+    font-size: 25px;
+    padding-bottom: 1px;
+}
+.reply{
+    font-size: 23px;
+}
+.myReaction{
+    display: flex;
+    justify-content: flex-end;
+}
+.reactionSpan{
+    background-color: #EEEEEE;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 8px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.reactionSpan:hover{
+    background-color: #DDDDDD;
+}
+.ReplyBox{
+    height: 50%;
+    width: 100%;
+}
+.ReplyName{
+    color: black;
+    font-size: 14px;
+    padding-left: 7px;
+}
+.ReplyMsg{
+    color: #777777;
+    font-size: 13px;
+    padding-left: 7px;
+    border-bottom: 1px solid grey;
+}
+.ReplyTable{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 98.8%;
+}
+.exit{
+    border-bottom: 1px solid grey;
+    color: #777777;
+    text-align: right;
+    padding-right: 3%
+}
+.exitBtn {
+    cursor: pointer;
+}
+.ReplyNamePrint{
+    color: black;
+    font-size: 14px;
+}
+.ReplyMsgPrint{
+    color: #777777;
+    font-size: 13px;
+    border-bottom: 1px solid grey;
 }

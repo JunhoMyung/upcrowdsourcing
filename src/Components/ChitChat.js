@@ -1,30 +1,22 @@
 import React, { Component } from 'react'
-import InputBase from '@material-ui/core/InputBase';
-import SendBtn from "./SendBtn.png"
-import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import Bunny from "./Bunny.png"
 import Kitty from "./Kitty.png"
 import Puppy from "./Puppy.png"
 import Squirrel from "./Squirrel.png"
-import Countdown from 'react-countdown';
+import Countdown from 'react-countdown'
+import Chat from "./Chat"
 
 export default class ChitChat extends Component {
 
     state = {
         msg: "",
+        emoji: false,
+        temp: true,
     }
 
     constructor(props) {
         super(props)
-        this.sendMsg = this.sendMsg.bind(this)
         this.keyPress = this.keyPress.bind(this)
-    }
-    
-    sendMsg = () => {
-        if (this.state.msg !== ""){
-            this.props.handler(this.props.name, this.state.msg)
-        }
-        this.setState({ msg: "" })
     }
 
     keyPress(e){
@@ -33,16 +25,6 @@ export default class ChitChat extends Component {
         }
     }
 
-    scrollToBottom = () => {
-        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-    }
-
-    // componentDidUpdate() {
-    //     if(this.props.msgList.length !== 0){
-    //         this.scrollToBottom();
-    //     }
-    // }
-    
     participants() {
         var participants = []
         var list = {Bunny: Bunny, Kitty: Kitty, Puppy: Puppy, Squirrel: Squirrel}
@@ -76,10 +58,10 @@ export default class ChitChat extends Component {
     renderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {
             this.props.close()
-          return (
-              <>
-              </>
-          );
+            return (
+                <>
+                </>
+            );
         } else {
             if (seconds >= 10){
                 return (
@@ -96,268 +78,10 @@ export default class ChitChat extends Component {
                 );
             }
         }
-      };
-
-    renderMsg = () => {
-        var msg = []
-        for (var i = 0; i < this.props.msgList.length; i ++){
-            if (this.props.nameList[i] === this.props.nameList[i - 1]) {
-                if (this.props.nameList[i] === this.props.name) {
-                    msg.push(
-                        <tr>
-                            <td className = "yourName">
-                            </td>
-                            <td className = "myMsg">
-                                <div className = "myMsgDiv">
-                                    {this.props.msgList[i]}
-                                </div>
-                                        
-                            </td>
-                            <td className = "myName">
-                            </td>
-                        </tr>
-                    )
-                }
-                else {
-                    msg.push(
-                        <tr>
-                            <td className = "yourName">
-                            </td>
-                            <td className = "yourMsg">
-                                <div className = "yourMsgDiv">
-                                    {this.props.msgList[i]}
-                                </div>
-                                        
-                            </td>
-                            <td className = "myName">
-                            </td>
-                        </tr>
-                    )
-                }
-            }
-            else if (this.props.nameList[i] === this.props.name){
-                if (this.props.name === "Kitty"){
-                    msg.push(
-                        <tr>
-                            <td className = "yourName">
-                            </td>
-                            <td className = "myMsg">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className = "nameMe" colSpan = {2}>
-                                                {this.props.nameList[i]}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td/>
-                                            <td className = "myMsgDiv">
-                                                {this.props.msgList[i]}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td className = "myName">
-                                <img className = "myPic" src={Kitty} alt = ""/>
-                            </td>
-                        </tr>
-                    )
-                }
-                else if (this.props.name === "Bunny"){
-                    msg.push(
-                        <tr>
-                            <td className = "yourName">
-                            </td>
-                            <td className = "myMsg">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className = "nameMe">
-                                                {this.props.nameList[i]}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className = "myMsgDiv">
-                                                {this.props.msgList[i]}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td className = "myName">
-                                <img className = "myPic" src={Bunny} alt = ""/>
-                            </td>
-                        </tr>
-                    )
-                }
-                else if (this.props.name === "Puppy"){
-                    msg.push(
-                        <tr>
-                            <td className = "yourName"></td>
-                            <td className = "myMsg">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className = "nameMe">
-                                                {this.props.nameList[i]}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className = "myMsgDiv">
-                                                {this.props.msgList[i]}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td className = "myName">
-                                <img className = "myPic" src={Puppy} alt = ""/>
-                            </td>
-                        </tr>
-                    )
-                }
-                else {
-                    msg.push(
-                        <tr>
-                            <td className = "yourName">
-                            </td>
-                            <td className = "myMsg">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className = "nameMe">
-                                                {this.props.nameList[i]}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className = "myMsgDiv">
-                                                {this.props.msgList[i]}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td className = "myName">
-                                <img className = "myPic" src={Squirrel} alt = ""/>
-                            </td>
-                        </tr>
-                    )
-                }
-            }
-            else {
-                if (this.props.nameList[i] === "Kitty"){
-                    msg.push(
-                        <tr>
-                            <td className = "yourName">
-                                <img className = "myPic" src={Kitty} alt = ""/>
-                            </td>
-                            <td className = "yourMsg">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className = "nameYou">
-                                                {this.props.nameList[i]}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className = "yourMsgDiv">
-                                                {this.props.msgList[i]}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td className = "myName"></td>
-                        </tr>
-                    )
-                }
-                else if (this.props.nameList[i] === "Bunny"){
-                    msg.push(
-                        <tr>
-                            <td className = "yourName">
-                                <img className = "myPic" src={Bunny} alt = ""/>
-                            </td>
-                            <td className = "yourMsg">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className = "nameYou">
-                                                {this.props.nameList[i]}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className = "yourMsgDiv">
-                                                {this.props.msgList[i]}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td className = "myName"></td>
-                        </tr>
-                    )
-                }
-                else if (this.props.nameList[i] === "Puppy"){
-                    msg.push(
-                        <tr>
-                            <td className = "yourName">
-                                <img className = "myPic" src={Puppy} alt = ""/>
-                            </td>
-                            <td className = "yourMsg">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className = "nameYou">
-                                                {this.props.nameList[i]}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className = "yourMsgDiv">
-                                                {this.props.msgList[i]}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td className = "myName"></td>
-                        </tr>
-                    )
-                }
-                else {
-                    msg.push(
-                        <tr>
-                            <td className = "yourName">
-                                <img className = "myPic" src={Squirrel} alt = ""/>
-                            </td>
-                            <td className = "yourMsg">
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className = "nameYou">
-                                                {this.props.nameList[i]}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className = "yourMsgDiv">
-                                                {this.props.msgList[i]}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </td>
-                            <td className = "myName"></td>
-                        </tr>
-                    )
-                }
-            }
-        }
-        return(msg)
-    }
+    };
 
     render() {
         if (this.props.process){
-            
             return (
                 <div style = {{ backgroundColor: "#FAFAFA"}}>
                     <div className = "NavBar">
@@ -398,33 +122,16 @@ export default class ChitChat extends Component {
                                             </tbody>
                                         </table>
                                     </td>
-                                    <td>
-                                        <div className = "heading1">
-                                            Chat
-                                        </div>
-                                        <div className = "ChatRecord" id = "ChatRecord">
-                                            <table className = "chatTable">
-                                                <tbody>
-                                                    {this.renderMsg()}
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div className = "ChatBox">
-                                            <span className = "TextBox">
-                                                <InputBase
-                                                    className = "TextInput"
-                                                    placeholder=""
-                                                    inputProps={{ 'aria-label': 'naked' }}
-                                                    onChange = {event => this.setState({msg: event.target.value})}
-                                                    onKeyDown={this.keyPress}
-                                                    autoFocus
-                                                    value={this.state.msg}
-                                                />
-                                                <InsertEmoticonIcon color="action" style={{ fontSize: 27 }} className = "emoji"/>
-                                                <img src={SendBtn} alt = "" className='send' onClick = {this.sendMsg}/>
-                                            </span>
-                                        </div>
-                                    </td>
+                                    <Chat 
+                                        nameList = {this.props.nameList}
+                                        msgList = {this.props.msgList}
+                                        reactionList = {this.props.reactionList}
+                                        name = {this.props.name}
+                                        timeList = {this.props.timeList}
+                                        handler = {this.props.handler}
+                                        reaction = {this.props.reaction}
+                                        replyList = {this.props.replyList}
+                                    />
                                 </tr>
                             </tbody>
                         </table>

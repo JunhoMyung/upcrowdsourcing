@@ -20,6 +20,9 @@
     color: #FFFFFF;
     cursor: pointer;
 }
+.prev:hover {
+    background: #E4E4E4;
+}
 
 .next_prev {
     padding: 10px;

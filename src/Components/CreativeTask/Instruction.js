@@ -142,7 +142,7 @@ export default class Instruction extends Component {
                                         <td className = "acceptTimer">
                                             <CountdownCircleTimer
                                                 isPlaying
-                                                duration={1} //130
+                                                duration={130}
                                                 colors={[
                                                 ['#004777', 0.33],
                                                 ['#F7B801', 0.33],

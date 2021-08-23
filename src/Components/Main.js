@@ -26,6 +26,9 @@ export default class main extends Component {
         accept: 0,
         msgList: [],
         nameList: [],
+        timeList: [],
+        replyList: [],
+        reactionList:{},
         playerName: "",
         questionNo: 0,
         prevAns: [],
@@ -42,9 +45,13 @@ export default class main extends Component {
         this.socket.on("receiveMsg", (Msg) => {
             var temp1 = [...this.state.msgList]
             var temp2 = [...this.state.nameList]
+            var temp3 = [...this.state.timeList]
+            var temp4 = [...this.state.replyList]
             temp1.push(Msg["msg"])
             temp2.push(Msg["name"])
-            this.setState({ msgList: temp1, nameList: temp2 })
+            temp3.push(Msg["time"])
+            temp4.push(Msg["reply"])
+            this.setState({ msgList: temp1, nameList: temp2, timeList: temp3, replyList: temp4 })
         })
         this.socket.on("name", (name) => {
             this.setState({ playerName: name })
@@ -62,6 +69,40 @@ export default class main extends Component {
             else {  
                 this.setState({ lobby: false, creativeInstruction: true, prev: 1 })
             }
+            // this.setState({ lobby: false, survey: true })
+        })
+        this.socket.on("reaction", (emoji, name, i) => {
+            var temp = this.state.reactionList
+            console.log(emoji)
+            var keylist = Object.keys(temp)
+            if (keylist.includes(i.toString())){
+                var emojiList = temp[i.toString()]
+                if(Object.keys(emojiList).includes(emoji)){
+                    var nameList = emojiList[emoji]
+                    if(nameList.includes(name)){
+                        for( var j = 0; j < nameList.length; j++){ 
+                            if ( nameList[j] === name) { 
+                                nameList.splice(j, 1); 
+                            }
+                        }
+                    }
+                    else{
+                        nameList.push(name)
+                    }
+                    temp[i.toString()][emoji] = nameList
+                }
+                else {
+                    emojiList[emoji] = [name]
+                    temp[i.toString()] = emojiList
+                }
+            }
+            else{
+                var object = {}
+                object[emoji] = [name]
+                temp[i.toString()] = object
+            }
+            this.setState({ reactionList: temp })
+            // var temp2 = {"1": {"emoji": [], "emoji2": []}}
         })
         this.socket.on("Intel-Instruction", (num) => {
             this.setState({ Intel_Instruction: num })
@@ -150,20 +191,26 @@ export default class main extends Component {
                 />
                 <CreativeTask
                     process = {this.state.creativeTask}
-                    handler = {(Name, Msg) => {
-                        this.socket.emit("send", Name, Msg)
+                    handler = {(Name, Msg, Time, Reply) => {
+                        this.socket.emit("send", Name, Msg, Time, Reply)
                     }}
                     msgList = {this.state.msgList}
                     nameList = {this.state.nameList}
                     name = {this.state.playerName}
+                    reactionList = {this.state.reactionList}
                     round = {this.state.round}
                     time = {this.state.time}
+                    replyList = {this.state.replyList}
                     submitTitle = {(title) => {this.socket.emit("submitTitle", title)}}
                     submitDescription = {(title) => {this.socket.emit("submitDescription", title)}}
                     title = {this.state.title}
                     description = {this.state.description}
                     finish = {this.handleFinishCre}
-                    // confirm = {this.socket.emit("finish")}
+                    timeList = {this.state.timeList}
+                    reaction = {(Name, msg, i) => {
+                        this.socket.emit("reaction", Name, msg, i)
+                    }}
+                    confirm = {() => this.socket.emit("finish")}
                 />
                 <IntellectiveInstruction 
                     process = {this.state.intellectiveInstruction}
@@ -173,18 +220,24 @@ export default class main extends Component {
                 />
                 <IntellectiveTask
                     process = {this.state.intellectiveTask}
-                    handler = {(Name, Msg) => {
-                        this.socket.emit("send", Name, Msg)
+                    handler = {(Name, Msg, Time, Reply) => {
+                        this.socket.emit("send", Name, Msg, Time, Reply)
                     }}
                     msgList = {this.state.msgList}
                     nameList = {this.state.nameList}
                     name = {this.state.playerName}
+                    reactionList = {this.state.reactionList}
+                    replyList = {this.state.replyList}
                     round = {this.state.round}
                     submit = {(ans) => {this.socket.emit("AnswerInt", ans)}}
                     prevAns = {this.state.prevAns}
                     questionNo = {this.state.questionNo}
                     time = {this.state.time}
                     finish = {this.handleFinishInt}
+                    timeList = {this.state.timeList}
+                    reaction = {(Name, msg, i) => {
+                        this.socket.emit("reaction", Name, msg, i)
+                    }}
                 />
                 <Survey 
                     process = {this.state.survey}
@@ -198,8 +251,14 @@ export default class main extends Component {
                     name = {this.state.playerName}
                     msgList = {this.state.msgList}
                     nameList = {this.state.nameList}
-                    handler = {(Name, Msg) => {
-                        this.socket.emit("send", Name, Msg)
+                    timeList = {this.state.timeList}
+                    replyList = {this.state.replyList}
+                    reactionList = {this.state.reactionList}
+                    handler = {(Name, Msg, Time, Reply) => {
+                        this.socket.emit("send", Name, Msg, Time, Reply)
+                    }}
+                    reaction = {(Name, msg, i) => {
+                        this.socket.emit("reaction", Name, msg, i)
                     }}
                 />
             </div>

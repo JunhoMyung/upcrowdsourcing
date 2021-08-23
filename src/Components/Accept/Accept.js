@@ -127,7 +127,7 @@ export default class Accept extends Component {
                                 <tr>
                                     <td className = "acceptTimer">
                                         <CountdownCircleTimer
-                                            isPlaying
+                                            isPlaying={true}
                                             duration={90}
                                             colors={[
                                             ['#004777', 0.33],

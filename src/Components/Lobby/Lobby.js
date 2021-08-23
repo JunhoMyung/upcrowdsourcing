@@ -13,6 +13,7 @@ export default class Lobby extends Component {
         greeting2: false,
         greeting3: false,
         accept: false,
+        countdown: false,
     }
 
     constructor(props) {
@@ -48,7 +49,7 @@ export default class Lobby extends Component {
     }
 
     nextGreeting3 = () => {
-        this.setState({ greeting3: false })
+        this.setState({ greeting3: false, countdown: true })
         this.props.socket.emit("ready")
     }
 
@@ -161,8 +162,8 @@ export default class Lobby extends Component {
                                     <tr>
                                         <td className = "centerLobby">
                                             <CountdownCircleTimer
-                                                isPlaying
-                                                duration={630}
+                                                isPlaying = {this.state.countdown}
+                                                duration={600}
                                                 colors={[
                                                 ['#004777', 0.33],
                                                 ['#F7B801', 0.33],
