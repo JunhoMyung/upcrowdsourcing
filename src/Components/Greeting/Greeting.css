@@ -90,6 +90,9 @@
 }
 .buffer {
     width: 26.4vw;
+    padding-left: 6.4vw;
+    padding-bottom: 4vh;
+    padding-top: 4vh;
 }
 .MTurkID {
     height: 6.5vh;

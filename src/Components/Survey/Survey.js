@@ -33,7 +33,6 @@ export default class Survey extends Component {
                         page2 = {this.state.greeting2}
                         handleNext1 = {this.nextGreeting1}
                         handleNext2 = {this.nextGreeting2}
-                        round = {this.props.round}
                     />
                     <div style = {{ backgroundColor: "#FAFAFA"}} className = "background">
                         <div className = "NavBar">
@@ -46,7 +45,6 @@ export default class Survey extends Component {
                                         </td>
                                         <td className = "Space"></td>
                                         <td className = "Instruction">
-                                            <div className = "InstructionBtn">Instruction</div>
                                         </td>
                                     </tr>
                                 </tbody>

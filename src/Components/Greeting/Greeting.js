@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import './Greeting.css'
 import InputBase from '@material-ui/core/InputBase';
-import Bunny from "../Bunny.png"
-import Kitty from "../Kitty.png"
-import Puppy from "../Puppy.png"
-import Squirrel from "../Squirrel.png"
-import Notification from "../notification.png"
+import Bunny from "../Images/Bunny.png"
+import Kitty from "../Images/Kitty.png"
+import Puppy from "../Images/Puppy.png"
+import Squirrel from "../Images/Squirrel.png"
+import Notification from "../Images/notification.png"
 
 
 export default class Greeting extends Component {
@@ -121,7 +121,7 @@ export default class Greeting extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
-                                        In this task, you will be placed in a group with three other participants. Together, you will solve two rounds of simple group tasks.
+                                        In this task, you will be placed in a group with three other participants. Together, you will create a simple Google Ad for a given project.
                                         <br/>
                                         <br/>
                                         During the task, you will be called "{this.props.name}" <img className = "myPic" src={this.state.participants[this.props.name]} alt = ""/>
@@ -166,14 +166,15 @@ export default class Greeting extends Component {
                                         The task will begin as soon as <b className = "blue">four members</b> join the room. 
                                         <br/>
                                         <br/>
-                                        We will notify you when the task is ready, so please 
-                                        <br/>
-                                        <b className = "blue">allow notification</b> <img className = "notification" src={Notification} alt = ""/> for this website.
+                                        We will notify you when the task is ready, so please <br/><b className = "blue">allow notification</b> <img className = "notification" src={Notification} alt = ""/> for this website.
                                         <br/>
                                         <br/>
-                                        Detailed instruction of the tasks will be given at the later stage.
+                                        A message will pop up when the task is ready.<br/> You <b className = "blue">MUST</b> respond to that message in <b className = "blue">90 seconds</b> to proceed.
                                         <br/>
-                                        Thank you again, and good luck!
+                                        <br/>
+                                        If you miss the message, you will not be able to proceed, and we wouldn't be able to pay you. Please be aware of this.
+                                        <br/>
+                                        <br/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -187,7 +188,49 @@ export default class Greeting extends Component {
                                     </td>
                                     <td className = "nextTd" onClick = {this.props.handleNext3}>
                                         <div className = "next">
-                                            BEGIN
+                                            NEXT
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </Modal.Body>       
+                </Modal>
+                <Modal
+                    show={this.props.page4}
+                    onHide={this.props.handleNext4}
+                    backdrop="static"
+                    keyboard={false}
+                    centered
+                    size="lg"
+                    dialogClassName="border-radius-2"
+                >
+                    <Modal.Body>
+                    <table className = "greetingTable">
+                            <tbody>
+                                <tr>
+                                    <td className = "greetingBody" colSpan = {3}>
+                                        If your waiting time exceeds 20 minutes, we will dismiss you and pay for the time you spent for waiting ($2 for 20 min).  
+                                        <br/>
+                                        <br/>
+                                        More detailed instruction for the task will be given when the task begins.
+                                        <br/>
+                                        <br/>
+                                        Thank you again for participating for this experiment, and good luck!!
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className = "prevTd">
+                                        <div className = "prev" onClick = {this.props.handlePrev4}>
+                                            PREV
+                                        </div>
+                                    </td>
+                                    <td className = "buffer">
+
+                                    </td>
+                                    <td className = "nextTd" onClick = {this.props.handleNext4}>
+                                        <div className = "next">
+                                            PROCEED
                                         </div>
                                     </td>
                                 </tr>

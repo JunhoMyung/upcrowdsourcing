@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import InputBase from '@material-ui/core/InputBase';
-import SendBtn from "./SendBtn.png"
+import SendBtn from "./Images/SendBtn.png"
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
-import Bunny from "./Bunny.png"
-import Kitty from "./Kitty.png"
-import Puppy from "./Puppy.png"
-import Squirrel from "./Squirrel.png"
+import Bunny from "./Images/Bunny.png"
+import Kitty from "./Images/Kitty.png"
+import Puppy from "./Images/Puppy.png"
+import Squirrel from "./Images/Squirrel.png"
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 import Tooltip from '@material-ui/core/Tooltip';

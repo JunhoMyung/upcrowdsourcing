@@ -12,6 +12,7 @@ export default class Lobby extends Component {
         greeting: true,
         greeting2: false,
         greeting3: false,
+        greeting4: false,
         accept: false,
         countdown: false,
     }
@@ -49,7 +50,15 @@ export default class Lobby extends Component {
     }
 
     nextGreeting3 = () => {
-        this.setState({ greeting3: false, countdown: true })
+        this.setState({ greeting3: false, greeting4: true })
+    }
+
+    prevGreeting4 = () => {
+        this.setState({ greeting3: true, greeting4: false })
+    }
+
+    nextGreeting4 = () => {
+        this.setState({ greeting4: false, countdown: true })
         this.props.socket.emit("ready")
     }
 
@@ -128,11 +137,14 @@ export default class Lobby extends Component {
                         open = {this.state.greeting}
                         page2 = {this.state.greeting2}
                         page3 = {this.state.greeting3}
+                        page4 = {this.state.greeting4}
                         handleNext1 = {this.nextGreeting1}
                         handlePrev2 = {this.prevGreeting2}
                         handleNext2 = {this.nextGreeting2}
                         handleNext3 = {this.nextGreeting3}
                         handlePrev3 = {this.prevGreeting3}
+                        handleNext4 = {this.nextGreeting4}
+                        handlePrev4 = {this.prevGreeting4}
                     />
                     <Accept
                         open = {this.state.accept}
@@ -163,7 +175,7 @@ export default class Lobby extends Component {
                                         <td className = "centerLobby">
                                             <CountdownCircleTimer
                                                 isPlaying = {this.state.countdown}
-                                                duration={600}
+                                                duration={1200}
                                                 colors={[
                                                 ['#004777', 0.33],
                                                 ['#F7B801', 0.33],

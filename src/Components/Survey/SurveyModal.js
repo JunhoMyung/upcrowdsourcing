@@ -5,7 +5,6 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
 
 export default class Greeting extends Component {
 
@@ -40,6 +39,14 @@ export default class Greeting extends Component {
     handleQ7 = (e) => {
         this.setState({ q7: e.target.value })
     }
+    handleSubmit = () => {
+        if (this.state.q1 && this.state.q2 && this.state.q3 && this.state.q4 && this.state.q5 && this.state.q6 && this.state.q7){
+            this.props.handleNext2()
+        }
+        else (
+            alert("You have to answer all questions")
+        )
+    }
 
     render() {
         return (
@@ -58,13 +65,13 @@ export default class Greeting extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
-                                        Round {this.props.round} is done!
+                                        The task is over! Thank you for your active participation.
                                         <br/>
                                         <br/>
-                                        Before moving on to the next step, we will take a very simple survey, which won't take more than 2 minutes.
+                                        As a last step, please answer to the short survey which won't take more than 2 minutes.
                                         <br/>
                                         <br/>
-                                        After answering the survey, you will be given some time to freely talk and get know each other.
+                                        After answering the survey, you will be dismissed. Thank you!
                                     </td>
                                 </tr>
                                 <tr>
@@ -100,7 +107,7 @@ export default class Greeting extends Component {
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
                                         <span className = "surveyTitle">
-                                            Round {this.props.round} Survey
+                                            Survey
                                         </span>
                                     </td>
                                 </tr>
@@ -120,30 +127,35 @@ export default class Greeting extends Component {
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="2"
                                                 control={<Radio color="primary" />}
                                                 label="Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="3"
                                                 control={<Radio color="primary" />}
-                                                label="Neither Agree or Disagree"
+                                                label="Neutral"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="4"
                                                 control={<Radio color="primary" />}
                                                 label="Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="5"
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                             </RadioGroup>
                                         </FormControl>
@@ -165,30 +177,35 @@ export default class Greeting extends Component {
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="2"
                                                 control={<Radio color="primary" />}
                                                 label="Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="3"
                                                 control={<Radio color="primary" />}
-                                                label="Neither Agree or Disagree"
+                                                label="Neutral"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="4"
                                                 control={<Radio color="primary" />}
                                                 label="Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="5"
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                             </RadioGroup>
                                         </FormControl>
@@ -210,30 +227,35 @@ export default class Greeting extends Component {
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="2"
                                                 control={<Radio color="primary" />}
                                                 label="Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="3"
                                                 control={<Radio color="primary" />}
-                                                label="Neither Agree or Disagree"
+                                                label="Neutral"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="4"
                                                 control={<Radio color="primary" />}
                                                 label="Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="5"
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                             </RadioGroup>
                                         </FormControl>
@@ -255,30 +277,35 @@ export default class Greeting extends Component {
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="2"
                                                 control={<Radio color="primary" />}
                                                 label="Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="3"
                                                 control={<Radio color="primary" />}
-                                                label="Neither Agree or Disagree"
+                                                label="Neutral"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="4"
                                                 control={<Radio color="primary" />}
                                                 label="Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="5"
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                             </RadioGroup>
                                         </FormControl>
@@ -300,30 +327,35 @@ export default class Greeting extends Component {
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="2"
                                                 control={<Radio color="primary" />}
                                                 label="Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="3"
                                                 control={<Radio color="primary" />}
-                                                label="Neither Agree or Disagree"
+                                                label="Neutral"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="4"
                                                 control={<Radio color="primary" />}
                                                 label="Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="5"
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                             </RadioGroup>
                                         </FormControl>
@@ -345,30 +377,35 @@ export default class Greeting extends Component {
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="2"
                                                 control={<Radio color="primary" />}
                                                 label="Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="3"
                                                 control={<Radio color="primary" />}
-                                                label="Neither Agree or Disagree"
+                                                label="Neutral"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="4"
                                                 control={<Radio color="primary" />}
                                                 label="Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="5"
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                             </RadioGroup>
                                         </FormControl>
@@ -390,30 +427,35 @@ export default class Greeting extends Component {
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="2"
                                                 control={<Radio color="primary" />}
                                                 label="Disagree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="3"
                                                 control={<Radio color="primary" />}
-                                                label="Neither Agree or Disagree"
+                                                label="Neutral"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="4"
                                                 control={<Radio color="primary" />}
                                                 label="Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                                 <FormControlLabel
                                                 value="5"
                                                 control={<Radio color="primary" />}
                                                 label="Strongly Agree"
                                                 labelPlacement="top"
+                                                className = "radioform"
                                                 />
                                             </RadioGroup>
                                         </FormControl>
@@ -421,17 +463,13 @@ export default class Greeting extends Component {
                                 </tr>
                                 <tr>
                                     <td className = "prevTd">
-                                        <div className = "prev" onClick = {this.props.handlePrev2}>
-                                            PREV
-                                        </div>
                                     </td>
                                     <td className = "buffer">
-
-                                    </td>
-                                    <td className = "nextTd" onClick = {this.props.handleNext2}>
-                                        <div className = "next">
+                                        <div className = "next" onClick = {this.handleSubmit}>
                                             SUBMIT
                                         </div>
+                                    </td>
+                                    <td className = "nextTd">
                                     </td>
                                 </tr>
                             </tbody>

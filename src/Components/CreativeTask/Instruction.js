@@ -175,7 +175,7 @@ export default class Instruction extends Component {
                                     <tr>
                                         <td className = "Title"> 
                                             {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            Round {this.props.round}: Creative Task
+                                            {/* Round {this.props.round}: Creative Task */}
                                         </td>
                                         <td className = "Space"></td>
                                         <td className = "Instruction">

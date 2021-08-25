@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import './Chat.css'
 import InputBase from '@material-ui/core/InputBase';
-import SendBtn from "../SendBtn.png"
-import Bunny from "../Bunny.png"
-import Kitty from "../Kitty.png"
-import Puppy from "../Puppy.png"
-import Squirrel from "../Squirrel.png"
+import SendBtn from "../Images/SendBtn.png"
+import Bunny from "../Images/Bunny.png"
+import Kitty from "../Images/Kitty.png"
+import Puppy from "../Images/Puppy.png"
+import Squirrel from "../Images/Squirrel.png"
 import Countdown from 'react-countdown';
 import ChatRender from '../Chat'
 
@@ -116,7 +116,7 @@ export default class Chat extends Component {
                                 <tr>
                                     <td className = "Title"> 
                                         {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                        Round {this.props.round}: Creative Task
+                                        {/* Round {this.props.round}: Creative Task */}
                                     </td>
                                     <td className = "Space"></td>
                                     <td className = "Instruction">

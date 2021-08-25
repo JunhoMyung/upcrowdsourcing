@@ -426,3 +426,57 @@
     font-size: 13px;
     border-bottom: 1px solid grey;
 }
+.question{
+    text-align: center;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 24px;
+    padding: 10px;
+}
+.firstColumnInt{
+    margin: auto;
+    width: 70%;
+    height: 98%;
+}
+.TimerInt {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    height: 2vh;
+}
+.heading2Int {
+    font-family: "Roboto";
+    font-style: normal;
+    font-size: 20px;
+    font-weight: bold;
+    height: 2vh;
+    padding-top: 2vh;
+    padding-bottom: 1vh;
+}
+.prevAnswer{
+    width: 18vw;
+    height: 30vh;
+    text-align: center;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+
+}
+.textBoxInt{
+    background: #F0F0F0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    width: 18vw;
+    height: 5vh;
+}
+.AnswerInput {
+    margin-left: 20px;
+    width: 13.5vw;
+    margin-right: 0px;
+}
+.prevAnsTable {
+    width: 100%;
+    /* padding-top: 2vh; */
+}

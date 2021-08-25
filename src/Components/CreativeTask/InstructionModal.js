@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/Modal'
-import Bunny from '../Example.png'
+import Example from '../Images/Example.png'
 
 export default class Instruction extends Component {
 
@@ -21,15 +21,15 @@ export default class Instruction extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody2" colSpan = {3}>
-                                        Welcome to the Creative Task session!
+                                        Thank you everyone for participating in our task.
                                         <br/>
                                         <br/>
-                                        In this session, you will be asked to create a short Google Ads <b className = "blue">together</b> with your group members.
+                                        As informed, you will be asked to create a short Google Ads <b className = "blue">together</b> with your group members.
                                         <br/>
                                         <br/>
                                         An example of a Google Ad is shown below:
                                         <br/>
-                                        <img className = "google" src={Bunny} alt = ""/>
+                                        <img className = "google" src={Example} alt = ""/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -67,10 +67,15 @@ export default class Instruction extends Component {
                                         A typical Google Ad consists of a <b className = "blue">title</b> (max 30 characters) and a <b className = "blue">description</b> (max 90 characters)
                                         <br/>
                                         <br/>
-                                        Your job in this task is to create a Google Ads for a given product, by discussing with your group members.
+                                        Your job in this task is to create a Google Ad for a given product, by discussing with your group members.
                                         <br/>
                                         <br/>
-                                        We will give you <b className = "blue">2 minutes</b> to read about the product and another <br/><b className = "blue">7 minutes</b> to create the advertisement.
+                                        There would be <b className = "blue">2 minutes</b> to read about the product and another <br/><b className = "blue">7 minutes</b> to create the advertisement.
+                                        <br/>
+                                        <br/>
+                                        We will give incentive ($1.50) to the group who came up with the best advertisement. So please be creative!
+                                        <br/>
+                                        <br/>
                                     </td>
                                 </tr>
                                 <tr>
