@@ -286,7 +286,7 @@ export default class Chat extends Component {
             if(!this.state.answered){
                 return(
                     <div className = "confirmation">
-                        {this.state.confirmationName} requested for submition.
+                        {this.state.confirmationName} requested for submission.
                         <br/>
                         <br/>
                         Do you agree with current Title and Description?
