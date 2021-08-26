@@ -84,7 +84,7 @@ export default class main extends Component {
             })
         })
         this.socket.on("allAccept", () => {
-            this.setState({ lobby: false, ready_notification: false, survey: true, waitingendtime: Date.now() })
+            this.setState({ lobby: false, ready_notification: false, creativeInstruction: true, waitingendtime: Date.now() })
             db.ref('/' + this.state.roomName + '/participants/').push({MTurkID: this.state.MTurkID, character: this.state.playerName})
         })
         this.socket.on("reaction", (emoji, name, i) => {
