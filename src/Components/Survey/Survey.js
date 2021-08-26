@@ -33,6 +33,8 @@ export default class Survey extends Component {
                         page2 = {this.state.greeting2}
                         handleNext1 = {this.nextGreeting1}
                         handleNext2 = {this.nextGreeting2}
+                        roomName = {this.props.roomName}
+                        name = {this.props.name}
                     />
                     <div style = {{ backgroundColor: "#FAFAFA"}} className = "background">
                         <div className = "NavBar">

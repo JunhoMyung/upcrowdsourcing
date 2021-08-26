@@ -1,5 +1,18 @@
 import React, { Component } from 'react'
-export default class Ending extends Component {
+import {db} from "../Firebase"
+
+export default class Pay extends Component {
+
+    state = {
+        db: false
+    }
+
+    componentDidUpdate = () => {
+        if (this.props.process && !this.state.db){
+            db.ref('/finishwaiting/').push({MTurkID: this.props.MTurkID, roomName: this.props.roomName});
+            this.setState({ db: true })
+        }
+    }
 
     render() {
         if (this.props.process){
@@ -12,7 +25,7 @@ export default class Ending extends Component {
                                     <tr>
                                         <td className = "Title"> 
                                             {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            Thank You for Participating!
+                                            Thank You
                                         </td>
                                         <td className = "Space"></td>
                                         <td className = "Instruction">
@@ -33,13 +46,16 @@ export default class Ending extends Component {
                                         <td className = "bodyLobby">
                                             <br/>
                                             <br/>
-                                            The task is over! Thank you again for participating.
+                                            We're sorry to say that 4 members didn't join the room in 20 minutes.
+                                            <br/>
+                                            <br/>
+                                            We would still pay you for the waiting time ($2 for 20 minutes), so please note down the survey code below.
                                             <br/>
                                             <br/>
                                             The survey code is: {this.props.roomName}
                                             <br/>
                                             <br/>
-                                            Have a good day!
+                                            Thank you for your participation, and have a good day!
                                         </td>
                                     </tr>
                                 </tbody>

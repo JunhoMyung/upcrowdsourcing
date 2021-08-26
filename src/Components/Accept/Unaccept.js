@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-export default class Ending extends Component {
+export default class Unaccept extends Component {
 
     render() {
         if (this.props.process){
@@ -12,7 +12,7 @@ export default class Ending extends Component {
                                     <tr>
                                         <td className = "Title"> 
                                             {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            Thank You for Participating!
+                                            Thank You
                                         </td>
                                         <td className = "Space"></td>
                                         <td className = "Instruction">
@@ -33,13 +33,13 @@ export default class Ending extends Component {
                                         <td className = "bodyLobby">
                                             <br/>
                                             <br/>
-                                            The task is over! Thank you again for participating.
+                                            You haven't responded to the message that popped up after the task was ready.
                                             <br/>
                                             <br/>
-                                            The survey code is: {this.props.roomName}
+                                            As informed earlier, we're sorry to say that we cannot pay you in this case.
                                             <br/>
                                             <br/>
-                                            Have a good day!
+                                            Still, thank you for your participation, and have a nice day!
                                         </td>
                                     </tr>
                                 </tbody>

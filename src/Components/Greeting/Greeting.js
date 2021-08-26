@@ -27,6 +27,7 @@ export default class Greeting extends Component {
         }
         else {
             this.props.handleNext1()
+            this.props.handleMturk(this.state.Mturk)
         }
     }
 
@@ -167,6 +168,9 @@ export default class Greeting extends Component {
                                         <br/>
                                         <br/>
                                         We will notify you when the task is ready, so please <br/><b className = "blue">allow notification</b> <img className = "notification" src={Notification} alt = ""/> for this website.
+                                        <br/>
+                                        <br/>
+                                        Also, make sure that your computer enables notification from the browser (i.e. Chrome) you are using.
                                         <br/>
                                         <br/>
                                         A message will pop up when the task is ready.<br/> You <b className = "blue">MUST</b> respond to that message in <b className = "blue">90 seconds</b> to proceed.

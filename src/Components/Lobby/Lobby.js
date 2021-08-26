@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Greeting from '../Greeting/Greeting'
 import './Lobby.css'
 import Accept from '../Accept/Accept'
-import { CountdownCircleTimer } from "react-countdown-circle-timer"
+import Countdown from 'react-countdown';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonIcon from '@material-ui/icons/Person';
 
@@ -14,7 +14,7 @@ export default class Lobby extends Component {
         greeting3: false,
         greeting4: false,
         accept: false,
-        countdown: false,
+        permission: false,
     }
 
     constructor(props) {
@@ -26,6 +26,7 @@ export default class Lobby extends Component {
         this.prevGreeting3 = this.prevGreeting3.bind(this)
         this.closeAccept1 = this.closeAccept1.bind(this)
         this.props.socket.on("full", () => {
+            this.props.handleAcceptTime()
             this.setState({ accept: true })
         })
     }
@@ -43,6 +44,10 @@ export default class Lobby extends Component {
 
     nextGreeting2 = () => {
         this.setState({ greeting2: false, greeting3: true })
+        if(!this.state.permission){
+            this.setState({ permission: true })
+            this.props.handlePermission()
+        }
     }
 
     prevGreeting3 = () => {
@@ -58,31 +63,23 @@ export default class Lobby extends Component {
     }
 
     nextGreeting4 = () => {
-        this.setState({ greeting4: false, countdown: true })
+        this.setState({ greeting4: false })
         this.props.socket.emit("ready")
+        this.props.handleWaitTime()
     }
 
     closeAccept1 = () => {
         this.props.socket.emit("accept")
     }
 
-    renderTime = (time) => {
-        if(time > 60){
-            return(
-                <div className="time-wrapper">
-                    <div className="time">{Math.floor(time/60)}</div>
-                    <div>minutes</div>
-                </div>
-            )
-        }
-        else{
-            return(
-                <div className="time-wrapper">
-                    <div className="time">{time}</div>
-                    <div>seconds</div>
-                </div>
-            )
-        }
+    noAccept = () => {
+        this.setState({ accept: false })
+        this.props.socket.emit("acceptfail")
+    }
+
+    refuse = () => {
+        this.props.socket.emit("refuse")
+        this.props.handleUnaccept()
     }
 
     renderParticipant = () => {
@@ -127,6 +124,32 @@ export default class Lobby extends Component {
             )
         }
     }
+    renderer = ({ hours, minutes, seconds, completed }) => {
+        if (completed) {
+            if(!this.state.accept){
+                this.props.handleEndWaiting()
+            }
+          return (
+              <>
+              </>
+          );
+        } else {
+            if (seconds >= 10){
+                return (
+                    <span>
+                      {minutes}:{seconds}
+                    </span>
+                  );
+            }
+            else {
+                return (
+                    <span>
+                      {minutes}:0{seconds}
+                    </span>
+                );
+            }
+        }
+      };
 
     render() {
         if (this.props.process){
@@ -145,11 +168,15 @@ export default class Lobby extends Component {
                         handlePrev3 = {this.prevGreeting3}
                         handleNext4 = {this.nextGreeting4}
                         handlePrev4 = {this.prevGreeting4}
+                        handleMturk = {this.props.handleMturk}
                     />
                     <Accept
                         open = {this.state.accept}
                         handleNext = {this.closeAccept1}
                         accept = {this.props.accept}
+                        handleNoAccept = {this.noAccept}
+                        refuse = {this.refuse}
+                        accepttime = {this.props.accepttime}
                     />
                     <div style = {{ backgroundColor: "#FAFAFA"}} className = "background">
                         <div className = "NavBar">
@@ -162,7 +189,6 @@ export default class Lobby extends Component {
                                         </td>
                                         <td className = "Space"></td>
                                         <td className = "Instruction">
-                                            <div className = "InstructionBtn">Instruction</div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -172,18 +198,12 @@ export default class Lobby extends Component {
                             <table className = "lobbyTable">
                                 <tbody>
                                     <tr>
-                                        <td className = "centerLobby">
-                                            <CountdownCircleTimer
-                                                isPlaying = {this.state.countdown}
-                                                duration={1200}
-                                                colors={[
-                                                ['#004777', 0.33],
-                                                ['#F7B801', 0.33],
-                                                ['#A30000', 0.33],
-                                                ]}
-                                            >
-                                                {({ remainingTime }) => this.renderTime(remainingTime)}
-                                            </CountdownCircleTimer>
+                                        <td className = "TimerDiv">
+                                            Remaining Time
+                                            <br/>
+                                            <div className="timer">
+                                                <Countdown date={this.props.waittime + 1200000} renderer={this.renderer}/>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>

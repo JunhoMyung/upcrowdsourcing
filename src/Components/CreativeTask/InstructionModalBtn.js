@@ -4,16 +4,14 @@ import Example from '../Images/Example.png'
 import Description from "../Images/Description.png"
 import Submit from "../Images/Submit.png"
 
-export default class Instruction extends Component {
+export default class InstructionModalBtn extends Component {
 
     render() {
         return (
             <div>
                 <Modal
                     show={this.props.open}
-                    onHide={this.props.handleNext1}
-                    backdrop="static"
-                    keyboard={false}
+                    onHide={this.props.handleClose1}
                     centered
                     size="lg"
                     dialogClassName="border-radius-2"
@@ -57,9 +55,7 @@ export default class Instruction extends Component {
                 </Modal>
                 <Modal
                     show={this.props.page2}
-                    onHide={this.props.handleNext2}
-                    backdrop="static"
-                    keyboard={false}
+                    onHide={this.props.handleClose2}
                     centered
                     size="lg"
                     dialogClassName="border-radius-2"
@@ -104,9 +100,7 @@ export default class Instruction extends Component {
                 </Modal>
                 <Modal
                     show={this.props.page3}
-                    onHide={this.props.handleNext3}
-                    backdrop="static"
-                    keyboard={false}
+                    onHide={this.props.handleClose3}
                     centered
                     size="lg"
                     dialogClassName="border-radius-2"
@@ -145,9 +139,7 @@ export default class Instruction extends Component {
                 </Modal>
                 <Modal
                     show={this.props.page4}
-                    onHide={this.props.handleNext4}
-                    backdrop="static"
-                    keyboard={false}
+                    onHide={this.props.handleClose4}
                     centered
                     size="lg"
                     dialogClassName="border-radius-2"

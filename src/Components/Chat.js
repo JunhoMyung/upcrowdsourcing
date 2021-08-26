@@ -10,6 +10,7 @@ import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 import Tooltip from '@material-ui/core/Tooltip';
 import { Icon } from '@iconify/react';
+import { db } from './Firebase'
 
 export default class Chat extends Component {
 
@@ -23,6 +24,8 @@ export default class Chat extends Component {
         ycord: 0,
         reactionclicked: null,
         reply: "null",
+        lastType: null,
+        lastEmoji: null,
     }
 
     constructor(props) {
@@ -55,6 +58,8 @@ export default class Chat extends Component {
     sendMsg = () => {
         if (this.state.msg !== ""){
             this.props.handler(this.props.name, this.state.msg, Date.now(), this.state.reply)
+            db.ref('/' + this.props.roomName + '/msg/').push({name: this.props.name, msg: this.state.msg, time: Date.now(), reply: this.state.reply})
+            db.ref('/' + this.props.roomName + '/'+ this.props.name +'/msgdelay/').push(Date.now() - this.state.lastType)
         }
         this.setState({ msg: "", reply: "null" })
     }
@@ -70,7 +75,7 @@ export default class Chat extends Component {
             this.setState({ emoji: false })
         }
         else {
-            this.setState({ emoji: true })
+            this.setState({ emoji: true, lastEmoji: Date.now() })
         }
     }
 
@@ -109,6 +114,7 @@ export default class Chat extends Component {
     }
 
     addEmoji = e => {
+        db.ref('/' + this.props.roomName + '/'+ this.props.name +'/emojidelay/').push(Date.now() - this.state.lastEmoji)
         let sym = e.unified.split('-')
         let codesArray = []
         sym.forEach(el => codesArray.push('0x' + el))
@@ -116,6 +122,7 @@ export default class Chat extends Component {
         this.setState({
             msg: this.state.msg + emoji,
             emoji: false,
+            lastType: Date.now(),
         })
         this.inputRef.current.focus()
     }
@@ -205,7 +212,7 @@ export default class Chat extends Component {
             else {
                 ycord = ycord - 50
             }
-            this.setState({ reaction: true, xcord: xcord, ycord: ycord, reactionclicked: event })
+            this.setState({ reaction: true, xcord: xcord, ycord: ycord, reactionclicked: event, lastEmoji: Date.now()})
         }
     }
 
@@ -1220,6 +1227,7 @@ export default class Chat extends Component {
     sendReaction = e => { 
         let sym = e.unified.split('-')
         let codesArray = []
+        db.ref('/' + this.props.roomName + '/'+ this.props.name +'/emojidelay/').push(Date.now() - this.state.lastEmoji)
         sym.forEach(el => codesArray.push('0x' + el))
         let emoji = String.fromCodePoint(...codesArray)
         this.props.reaction(emoji, this.props.name, this.state.reactionclicked)
@@ -1277,7 +1285,7 @@ export default class Chat extends Component {
                                                     className = "TextInput"
                                                     placeholder=""
                                                     inputProps={{ 'aria-label': 'naked' }}
-                                                    onChange = {event => this.setState({msg: event.target.value})}
+                                                    onChange = {event => this.setState({msg: event.target.value, lastType: Date.now()})}
                                                     onKeyDown={this.keyPress}
                                                     autoFocus
                                                     value={this.state.msg}
@@ -1307,7 +1315,7 @@ export default class Chat extends Component {
                                     className = "TextInput"
                                     placeholder=""
                                     inputProps={{ 'aria-label': 'naked' }}
-                                    onChange = {event => this.setState({msg: event.target.value})}
+                                    onChange = {event => this.setState({msg: event.target.value, lastType: Date.now()})}
                                     onKeyDown={this.keyPress}
                                     autoFocus
                                     value={this.state.msg}

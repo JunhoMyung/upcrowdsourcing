@@ -1,24 +1,47 @@
 import React, { Component } from 'react'
 import Modal from 'react-bootstrap/Modal'
 import "./Accept.css"
-import { CountdownCircleTimer } from "react-countdown-circle-timer"
+import Countdown from 'react-countdown';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import PersonIcon from '@material-ui/icons/Person';
 
 export default class Accept extends Component {
 
     state = {
-        accepted: false
+        accepted: false,
     }
 
-    renderTime = (time) => {
-        return (
-          <div className="time-wrapper">
-            <div className="time">{time}</div>
-            <div>seconds</div>
-          </div>
-        );
-    };
+    renderer = ({ hours, minutes, seconds, completed }) => {
+        if (completed) {
+            this.setState({ accepted: false })
+            if(this.state.accepted){
+                this.props.handleNoAccept();
+            }
+            else{
+                this.props.refuse();
+            }
+          return (
+              <>
+              </>
+          );
+        } else {
+            if (seconds >= 10){
+                return (
+                    <span>
+                      {minutes}:{seconds}
+                    </span>
+                  );
+            }
+            else {
+                return (
+                    <span>
+                      {minutes}:0{seconds}
+                    </span>
+                );
+            }
+        }
+      };
+
 
     handleClick = () => {
         this.setState({ accepted: true })
@@ -109,42 +132,43 @@ export default class Accept extends Component {
     }
 
     render() {
-              
-        return (
-            <div>
-                <Modal
-                    show={this.props.open}
-                    onHide={this.props.handleClick}
-                    backdrop="static"
-                    keyboard={false}
-                    centered
-                    size="lg"
-                    // dialogClassName="border-radius-2"
-                >
-                    <Modal.Body>
-                        <table className = "acceptTable">
-                            <tbody>
-                                <tr>
-                                    <td className = "acceptTimer">
-                                        <CountdownCircleTimer
-                                            isPlaying={true}
-                                            duration={90}
-                                            colors={[
-                                            ['#004777', 0.33],
-                                            ['#F7B801', 0.33],
-                                            ['#A30000', 0.33],
-                                            ]}
-                                        >
-                                            {({ remainingTime }) => this.renderTime(remainingTime)}
-                                        </CountdownCircleTimer>
-                                    </td>
-                                </tr>
-                                {this.renderContent()}
-                            </tbody>
-                        </table>     
-                    </Modal.Body>       
-                </Modal>
-            </div>
-        )
+        if(this.props.open) {
+            return (
+                <div>
+                    <Modal
+                        show={this.props.open}
+                        onHide={this.props.handleClick}
+                        backdrop="static"
+                        keyboard={false}
+                        centered
+                        size="lg"
+                        // dialogClassName="border-radius-2"
+                    >
+                        <Modal.Body>
+                            <table className = "acceptTable">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div className = "timerTitle">
+                                                Remaining Time
+                                            </div>
+                                            <div className="timer">
+                                                <Countdown date={this.props.accepttime + 90000} renderer={this.renderer} />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {this.renderContent()}
+                                </tbody>
+                            </table>     
+                        </Modal.Body>       
+                    </Modal>
+                </div>
+            )
+        }   
+        else{
+            return(
+                <></>
+            )
+        }
     }
 }

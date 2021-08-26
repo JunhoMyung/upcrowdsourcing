@@ -34,7 +34,7 @@
     background: #75C8E2;
     border-radius: 8px;
     font-family: "Roboto", sans-serif;
-    position: relative;
+    /* position: relative; */
     width: 250px;
     height: 41px;
     display: flex;
@@ -479,4 +479,52 @@
 .prevAnsTable {
     width: 100%;
     /* padding-top: 2vh; */
+}
+.terminate {
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+.confirmation {
+    position: absolute;
+    width: 30vw;
+    height: 20vh;
+    text-align: center;
+    background-color: #c7c7c7;
+    margin-top: 2.4vh;
+    margin-left: 67.5vw;
+    border-radius: 10px;
+    padding-top: 2vh;
+    font-size: 18px;
+}
+.check{
+    width: 15vw;
+    font-size: 30px;
+    padding-top: 2vh;
+    padding-left: 7vw;
+    color: green;
+}
+.wrong{
+    width: 15vw;
+    font-size: 30px;
+    padding-top: 2vh;
+    padding-right: 7vw;
+    color: red;
+}
+.pointer{
+    cursor: pointer;
+}
+.agreeStatus{
+    width:8vw;
+}
+.agree{
+    color: green;
+    padding-top: 1.5vh;
+}
+.disagree{
+    color: red;
+    padding-top: 1.5vh;
+}
+.undecided{
+    color: black;
+    padding-top: 1.5vh;
 }

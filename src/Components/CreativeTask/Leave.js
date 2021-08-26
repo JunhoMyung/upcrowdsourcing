@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-export default class Ending extends Component {
+export default class Leave extends Component {
 
     render() {
         if (this.props.process){
@@ -12,7 +12,7 @@ export default class Ending extends Component {
                                     <tr>
                                         <td className = "Title"> 
                                             {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            Thank You for Participating!
+                                            Apologies
                                         </td>
                                         <td className = "Space"></td>
                                         <td className = "Instruction">
@@ -25,21 +25,19 @@ export default class Ending extends Component {
                             <table className = "lobbyTable">
                                 <tbody>
                                     <tr>
-                                        <td>
-                                            
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className = "bodyLobby">
+                                        <td className = "bodyLobby terminate">
                                             <br/>
                                             <br/>
-                                            The task is over! Thank you again for participating.
+                                            One of your group members have left the session, and hence we will end the session here.
+                                            <br/>
+                                            <br/>
+                                            We will still grant you $3 (+ money according to waiting time) for your participation.
                                             <br/>
                                             <br/>
                                             The survey code is: {this.props.roomName}
                                             <br/>
                                             <br/>
-                                            Have a good day!
+                                            Thank you, and have a nice day!
                                         </td>
                                     </tr>
                                 </tbody>

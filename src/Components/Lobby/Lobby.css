@@ -29,3 +29,28 @@
     padding-bottom: 12vh;
     font-size: 24px;
 }
+.timer {
+    font-size: 40px;
+    padding-top: 2vh;
+    color: #175e74;
+    font-weight: bold;
+    text-align: center;
+}
+.timerReading{
+    font-size: 50px;
+    padding-top: 1vh;
+    color: #175e74;
+    font-weight: bold;
+    text-align: center;
+}
+.TimerDiv{
+    padding-top: 13vh;
+}
+.timerTitle{
+    text-align: center;
+    font-size: 20px;
+    padding-top: 5vh;
+}
+.descriptionImg{
+    height: 50vh;
+}

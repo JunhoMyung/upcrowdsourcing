@@ -5,6 +5,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
+import { db } from '../Firebase'
 
 export default class Greeting extends Component {
 
@@ -41,6 +42,7 @@ export default class Greeting extends Component {
     }
     handleSubmit = () => {
         if (this.state.q1 && this.state.q2 && this.state.q3 && this.state.q4 && this.state.q5 && this.state.q6 && this.state.q7){
+            db.ref('/' + this.props.roomName + '/'+ this.props.name +'/survey/').push({q1: this.state.q1, q2: this.state.q2, q3: this.state.q3, q4: this.state.q4, q5: this.state.q5, q6: this.state.q6, q7: this.state.q7})
             this.props.handleNext2()
         }
         else (

@@ -5,6 +5,12 @@ import { io } from "socket.io-client"
 import Lobby from './Lobby/Lobby'
 import Survey from './Survey/Survey'
 import Ending from './Ending/Ending'
+import Pay from './Lobby/Pay'
+import Unaccept from './Accept/Unaccept'
+import icon from "./Images/icon.png"
+import Leave from './CreativeTask/Leave'
+import WebNotification from 'react-web-notifications'
+import { db } from './Firebase'
 
 export default class main extends Component {
 
@@ -13,6 +19,13 @@ export default class main extends Component {
         creativeTask: false,
         creativeInstruction: false,
         ending: false,
+        end_waiting: false,
+        unaccept: false,
+        ready_notification: false,
+        ask_permission: false,
+        reading_notification: false,
+        end_notification: false,
+        terminate: false,
         Creative_Instruction: 0,
         survey: false,
         accept: 0,
@@ -24,15 +37,23 @@ export default class main extends Component {
         playerName: "",
         playerList: 0,
         roomName: "",
-        time: "",
+        chattime: "",
+        waittime: "",
+        accepttime: "",
+        readingtime: "",
         Reading: false,
         title: "",
         description: "",
+        entertime: null,
+        waitingendtime: null,
+        MTurkID: "",
     }
 
     constructor(props) {
         super(props)
-        this.socket = io("ec2-3-36-126-54.ap-northeast-2.compute.amazonaws.com:8080");
+        this.socket = io("https://www.up-kixlabserver.us", {
+            closeOnBeforeunload: false // defaults to true
+          });
         this.socket.on("receiveMsg", (Msg) => {
             var temp1 = [...this.state.msgList]
             var temp2 = [...this.state.nameList]
@@ -53,8 +74,18 @@ export default class main extends Component {
         this.socket.on("accept", (num) => {
             this.setState({ accept: num })
         })
+        this.socket.on("terminate", () => {
+            this.setState({ 
+                creativeTask: false,
+                creativeInstruction: false,
+                ending: false, 
+                survey: false,
+                terminate: true,
+            })
+        })
         this.socket.on("allAccept", () => {
-            this.setState({ lobby: false, creativeInstruction: true })
+            this.setState({ lobby: false, ready_notification: false, creativeInstruction: true, waitingendtime: Date.now() })
+            db.ref('/' + this.state.roomName + '/participants/').push({MTurkID: this.state.MTurkID, character: this.state.playerName})
         })
         this.socket.on("reaction", (emoji, name, i) => {
             var temp = this.state.reactionList
@@ -93,6 +124,7 @@ export default class main extends Component {
         })
         this.socket.on("Creative-Instruction-Done", () =>{
             this.setState({ Reading: true })
+            this.handleReadingTime()
         })
         this.socket.on("adtitle", (title) => {
             this.setState({ title: title })
@@ -101,46 +133,116 @@ export default class main extends Component {
             this.setState({ description: description })
         })
         this.socket.on("finish", () => {
+            if(this.state.playerName === "Bunny"){
+                db.ref('/' + this.state.roomName + '/reaction/').push(this.state.reactionList)
+                db.ref('/' + this.state.roomName + '/answer/').push({title: this.state.title, description: this.state.description})
+            }
             this.setState({ survey: true, creativeTask: false })
         })
         this.handleReading = this.handleReading.bind(this)
-        this.handleFinishCre = this.handleFinishCre.bind(this)
         this.handleSurvey = this.handleSurvey.bind(this)
+        this.handleFinishWaiting = this.handleFinishWaiting.bind(this)
+        this.handleUnaccept = this.handleUnaccept.bind(this)
+        this.handlePermission = this.handlePermission.bind(this)
+        this.handleMturk = this.handleMturk.bind(this)
     }
 
-    // componentDidMount = () => {
-    //     window.addEventListener('beforeunload', function (e) {
-    //         e.preventDefault();
-    //         e.returnValue = ' ';
-    //     });
-    //     window.addEventListener('unload', function (e) {
-    //         this.socket.emit('actual_disconnect');
-    //     });
-    // }
+    componentDidMount = () => {
+        window.addEventListener('beforeunload', function (e) {
+            e.preventDefault();
+            e.returnValue = ' ';
+        });
+        window.addEventListener('unload', function (e) {
+        });
+    }
+
+    handleMturk = (id) => {
+        this.setState({ MTurkID: id })
+    }
 
     handleReading = () => {
-        this.setState({ Reading: false, creativeInstruction: false, creativeTask:true })
-        this.setState({ time: Date.now() })
+        this.setState({ Reading: false, creativeInstruction: false, creativeTask:true, reading_notification: true })
+        this.setState({ chattime: Date.now() })
     }
 
-    handleFinishCre = () => {
-        this.setState({ survey: true, creativeTask: false })
+    handleFinishWaiting = () => {
+        this.setState({ lobby: false, end_waiting: true, end_notification: true })
+        this.socket.emit("end-waiting")
+    }
+
+    handleUnaccept = () => {
+        this.setState({ lobby: false, unaccept: true })
     }
 
     handleSurvey = () => {
         this.setState({ survey: false, ending: true })
     }
 
+    handleWaitTime = () => {
+        this.setState({ waittime: Date.now(), entertime: Date.now() })
+    }
+
+    handleAcceptTime = () => {
+        this.setState({ accepttime: Date.now(), ready_notification: true })
+    }
+
+    handleReadingTime = () => {
+        this.setState({ readingtime: Date.now() })
+    }
+
+    handlePermission = () => {
+        if (this.state.ask_permission){
+            this.setState({ ask_permission: false})
+        }
+        else {
+            this.setState({ ask_permission: true})
+        }
+    }
+
     render() {
 
         return (
             <div>
+                {this.state.ask_permission ? <WebNotification
+                    title="Thank you for participating!" // the title prop is required
+                    icon = {icon}
+                    body="We will notify you when task is ready!"
+                    timeout={9000}
+                /> : <></>}
+                {this.state.ready_notification ? <WebNotification
+                    title="The Task is Ready!" // the title prop is required
+                    icon = {icon}
+                    body="Please come back to the website to proceed."
+                    timeout={9000}
+                /> : <></>}
+                {this.state.reading_notification ? <WebNotification
+                    title="Reading Time is Over!" // the title prop is required
+                    icon = {icon}
+                    body="Please come back to the website to proceed."
+                    timeout={9000}
+                /> : <></>}
+                {this.state.end_notification ? <WebNotification
+                    title="20 Minutes Have Passed" // the title prop is required
+                    icon = {icon}
+                    body="Please come back to the website to proceed."
+                    timeout={9000}
+                /> : <></>}
                 <Lobby
                     process = {this.state.lobby}
                     socket = {this.socket}
                     playerList = {this.state.playerList}
                     name = {this.state.playerName}
                     accept = {this.state.accept}
+                    handleEndWaiting = {this.handleFinishWaiting}
+                    handleUnaccept = {this.handleUnaccept}
+                    handleWaitTime = {this.handleWaitTime}
+                    waittime = {this.state.waittime}
+                    accepttime = {this.state.accepttime}
+                    handleAcceptTime = {this.handleAcceptTime}
+                    handlePermission = {this.handlePermission}
+                    handleMturk = {this.handleMturk}
+                    roomName = {this.state.roomName}
+                    MTurkID = {this.state.MTurkID}
                 />
                 <CreativeInstruction 
                     process = {this.state.creativeInstruction}
@@ -148,6 +250,7 @@ export default class main extends Component {
                     playerList = {this.state.Creative_Instruction}
                     reading = {this.state.Reading}
                     handleReading = {this.handleReading}
+                    readingtime = {this.state.readingtime}
                 />
                 <CreativeTask
                     process = {this.state.creativeTask}
@@ -157,26 +260,42 @@ export default class main extends Component {
                     msgList = {this.state.msgList}
                     nameList = {this.state.nameList}
                     name = {this.state.playerName}
+                    roomName = {this.state.roomName}
+                    MTurkID = {this.state.MTurkID}
                     reactionList = {this.state.reactionList}
-                    time = {this.state.time}
+                    time = {this.state.chattime}
+                    socket = {this.socket}
                     replyList = {this.state.replyList}
                     submitTitle = {(title) => {this.socket.emit("submitTitle", title)}}
                     submitDescription = {(title) => {this.socket.emit("submitDescription", title)}}
                     title = {this.state.title}
                     description = {this.state.description}
-                    finish = {this.handleFinishCre}
+                    finish = {(title, description) => {this.socket.emit("finish", title, description)}}
                     timeList = {this.state.timeList}
                     reaction = {(Name, msg, i) => {
                         this.socket.emit("reaction", Name, msg, i)
                     }}
-                    confirm = {() => this.socket.emit("finish")}
                 />
                 <Survey 
                     process = {this.state.survey}
                     close = {this.handleSurvey}
+                    name = {this.state.playerName}
+                    roomName = {this.state.roomName}
                 />
                 <Ending
                     process = {this.state.ending}
+                    roomName = {this.state.roomName}
+                />
+                <Pay
+                    process = {this.state.end_waiting}
+                    roomName = {this.state.roomName}
+                    MTurkID = {this.state.MTurkID}
+                />
+                <Unaccept
+                    process = {this.state.unaccept}
+                />
+                <Leave 
+                    process = {this.state.terminate}
                     roomName = {this.state.roomName}
                 />
             </div>
