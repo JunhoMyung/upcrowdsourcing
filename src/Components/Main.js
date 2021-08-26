@@ -86,7 +86,7 @@ export default class main extends Component {
         this.socket.on("allAccept", () => {
             this.setState({ lobby: false, ready_notification: false, creativeInstruction: true, waitingendtime: Date.now() })
             db.ref('/' + this.state.roomName + '/participants/').push({MTurkID: this.state.MTurkID, character: this.state.playerName})
-            db.ref('/' + this.state.roomName + '/'+ this.props.name + '/waitingtime/').push(this.state.accepttime - this.state.waittime)
+            db.ref('/' + this.state.roomName + '/'+ this.props.playerName + '/waitingtime/').push(this.state.accepttime - this.state.waittime)
         })
         this.socket.on("reaction", (emoji, name, i) => {
             var temp = this.state.reactionList
