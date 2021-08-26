@@ -73,7 +73,7 @@ export default class Greeting extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
-                                        Thank you for participating in our task!
+                                        Thank you for participating in our task!!
                                         <br/>
                                         <br/>
                                         To begin with, please enter your MTurk ID below.

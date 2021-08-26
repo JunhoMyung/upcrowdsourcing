@@ -10,7 +10,7 @@
     font-family: "Roboto";
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 3.2vh;
     line-height: 28px;
     width: 50vw;
     align-items: left;
@@ -19,7 +19,7 @@
     width: 30vw;
 }
 .Instruction {
-    font-size: 20px;
+    font-size: 3vh;
 }
 .ChatMain {
     margin-left: 15%;
@@ -35,12 +35,11 @@
     border-radius: 8px;
     font-family: "Roboto", sans-serif;
     /* position: relative; */
-    width: 250px;
-    height: 41px;
+    width: 17vw;
+    height: 5.5vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
     color: #FFFFFF;
     cursor: pointer;
 }
@@ -59,17 +58,17 @@
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 3.2vh;
     padding-left: 10px;
 }
 .ChatRecord {
-    height: 85%;
+    height: 75vh;
     overflow-y: auto;
     padding: 10px;
     vertical-align: bottom;
 }
 .ChatRecordReply{
-    height: 80%;
+    height: 68vh;
     overflow-y: auto;
     padding: 10px;
     vertical-align: bottom;
@@ -85,7 +84,7 @@
     margin-left: 0.9vw;
     bottom: 3%;
     width: 43vw;
-    height: 90px;
+    height: 11vh;
     background: #F0F0F0;
     border-radius: 15px;
     display: flex;
@@ -96,7 +95,7 @@
     margin-left: 0.9vw;
     bottom: 3%;
     width: 43vw;
-    height: 40px;
+    height: 5vh;
     background: #F0F0F0;
     border-radius: 15px;
     display: flex;
@@ -109,15 +108,16 @@
 .emoji {
     margin-left: 1.5vw;
     cursor: pointer;
+    font-size: 3vh
 }
 .send {
-    height: 2.8vh;
+    height: 3vh;
     margin-left: 0.8vw;
     cursor: pointer;
 }
 .myPic {
-    width: 40px;
-    height: 40px;
+    width: 4.5vh;
+    height: 4.5vh;
 }
 .chatTable {
     width: 43vw;
@@ -149,7 +149,7 @@
     display: flex;
     justify-content: flex-end;
     margin-right: 10px;
-    font-size: 40px;
+    font-size: 6vh;
     max-width: 28vw;
 }
 .myMsgEmojiFirst{
@@ -157,7 +157,7 @@
     text-align: right;
     display: flex;
     justify-content: flex-end;
-    font-size: 40px;
+    font-size: 6vh;
     max-width: 28vw;
 }
 .myMsgDiv{
@@ -165,9 +165,10 @@
     vertical-align: top;
     background: #EEEEEE;
     border-radius: 8px 0px 8px 8px;
-    padding: 7px;
+    padding: 1vh;
     word-wrap: break-word;
     white-space:pre-wrap;
+    font-size: 2vh;
 }
 .yourMsg{
     display: flex;
@@ -185,7 +186,7 @@
     vertical-align: top;
     text-align: left;
     margin-left: 10px;
-    font-size: 40px;
+    font-size: 6vh;
     max-width: 28vw;
 }
 .yourMsgEmojiFirst{
@@ -193,21 +194,24 @@
     vertical-align: top;
     text-align: left;
     max-width: 28vw;
-    font-size: 40px;
+    font-size: 6vh;
 }
 .yourMsgDiv{
     max-width: 30vw;
     background: #EEEEEE;
     border-radius: 0px 8px 8px 8px;
-    padding: 7px;
+    padding: 1vh;
     word-wrap: break-word;
     white-space:pre-wrap;
+    font-size: 2vh;
 }
 .nameMe {
     font-weight: bold;
+    font-size: 2vh;
     text-align: right;
 }
 .nameYou {
+    font-size: 2vh;
     font-weight: bold;
     text-align: left;
 }
@@ -219,7 +223,7 @@
     font-family: "Roboto";
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 3.2vh;
 }
 .blue {
     color: #175e74;
@@ -232,21 +236,21 @@
 .participant_name {
     font-family: "Roboto";
     font-style: normal;
-    font-size: 18px;
+    font-size: 2.4vh;
     padding-left: 10px;
     height: 15px;
 }
 .heading2 { 
     font-family: "Roboto";
     font-style: normal;
-    font-size: 20px;
+    font-size: 3vh;
     padding-bottom: 10px;
 }
 .greetingBody2 {
     font-family: "Roboto";
     font-style: normal;
     font-weight: normal;
-    font-size: 22px;
+    font-size: 3.2vh;
     text-align: center;
     word-wrap: break-word;
     white-space:pre-wrap;
@@ -256,11 +260,11 @@
 }
 .adtitle {
     width: 18vw;
-    height: 70px;
+    height: 9vh;
     font-family: "Roboto";
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 2.2vh;
     padding: 5px;
     text-align: center;
     border: 1px solid #222222;
@@ -275,7 +279,7 @@
 }
 .adDescription {
     width: 18vw;
-    height: 110px;
+    height: 13vh;
     padding: 5px;
     overflow-y: auto;
     font-family: "Roboto";
@@ -283,7 +287,7 @@
     white-space:pre-wrap;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 2.2vh;
     text-align: center;
     border: 1px solid #222222;
     box-sizing: border-box;
@@ -296,11 +300,11 @@
     font-family: "Roboto", sans-serif;
     position: relative;
     width: 100%;
-    height: 40px;
+    height: 6vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 2.4vh;
     color: #FFFFFF;
     cursor: pointer;
     margin: auto;
@@ -311,32 +315,32 @@
 }
 .myTimezone {
     vertical-align: bottom;
-    font-size: 13px;
+    font-size: 1.5vh;
     padding-right: 10px;
     color: #777777;
 }
 .myTimezoneEmoji {
     vertical-align: bottom;
-    font-size: 13px;
+    font-size: 1.5vh;
     padding-right: 10px;
     color: #777777;
     padding-bottom: 10px;
 }
 .yourTimezone {
     vertical-align: bottom;
-    font-size: 13px;
+    font-size: 1.5vh;
     padding-left: 10px;
     color: #777777;
 }
 .yourTimezoneEmoji {
     vertical-align: bottom;
-    font-size: 13px;
+    font-size: 1.5vh;
     padding-left: 10px;
     padding-bottom: 10px;
     color: #777777;
 }
 .hoverTd{
-    font-size:17px;
+    font-size:2vh;
     cursor: pointer;
     color: #444444;
     border: 1px solid black;
@@ -364,11 +368,11 @@
     border-spacing: 0; 
 }
 .smile-plus{
-    font-size: 25px;
+    font-size: 3vh;
     padding-bottom: 1px;
 }
 .reply{
-    font-size: 23px;
+    font-size: 3vh;
 }
 .myReaction{
     display: flex;
@@ -383,7 +387,7 @@
     margin-top: 5px;
     margin-bottom: 3px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 1.7vh;
 }
 .reactionSpan:hover{
     background-color: #DDDDDD;
@@ -394,12 +398,12 @@
 }
 .ReplyName{
     color: black;
-    font-size: 14px;
+    font-size: 1.7vh;
     padding-left: 7px;
 }
 .ReplyMsg{
     color: #777777;
-    font-size: 13px;
+    font-size: 1.6vh;
     padding-left: 7px;
     border-bottom: 1px solid grey;
 }
@@ -419,11 +423,11 @@
 }
 .ReplyNamePrint{
     color: black;
-    font-size: 14px;
+    font-size: 1.7vh;
 }
 .ReplyMsgPrint{
     color: #777777;
-    font-size: 13px;
+    font-size: 1.5vh;
     border-bottom: 1px solid grey;
 }
 .question{
@@ -431,7 +435,7 @@
     font-family: "Roboto";
     font-style: normal;
     font-weight: bolder;
-    font-size: 24px;
+    font-size: 3vh;
     padding: 10px;
 }
 .firstColumnInt{
@@ -443,13 +447,13 @@
     font-family: "Roboto";
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 3vh;
     height: 2vh;
 }
 .heading2Int {
     font-family: "Roboto";
     font-style: normal;
-    font-size: 20px;
+    font-size: 2.6vh;
     font-weight: bold;
     height: 2vh;
     padding-top: 2vh;
@@ -475,6 +479,7 @@
     margin-left: 20px;
     width: 13.5vw;
     margin-right: 0px;
+    font-size: 2vh;
 }
 .prevAnsTable {
     width: 100%;
@@ -494,19 +499,17 @@
     margin-left: 67.5vw;
     border-radius: 10px;
     padding-top: 2vh;
-    font-size: 18px;
+    font-size: 2.2vh;
 }
 .check{
     width: 15vw;
-    font-size: 30px;
-    padding-top: 2vh;
+    font-size: 4vh;
     padding-left: 7vw;
     color: green;
 }
 .wrong{
     width: 15vw;
-    font-size: 30px;
-    padding-top: 2vh;
+    font-size: 4vh;
     padding-right: 7vw;
     color: red;
 }
