@@ -23,12 +23,12 @@ export default class main extends Component {
         unaccept: false,
         ready_notification: false,
         ask_permission: false,
-        reading_notification: false,
         end_notification: false,
         terminate: false,
         Creative_Instruction: 0,
         survey: false,
         accept: 0,
+        participantList: [],
         msgList: [],
         nameList: [],
         timeList: [],
@@ -40,8 +40,6 @@ export default class main extends Component {
         chattime: "",
         waittime: "",
         accepttime: "",
-        readingtime: "",
-        Reading: false,
         title: "",
         description: "",
         entertime: null,
@@ -123,9 +121,12 @@ export default class main extends Component {
         this.socket.on("Creative-Instruction", (num) => {
             this.setState({ Creative_Instruction: num })
         })
+        this.socket.on("currentMember", (temp) => {
+            this.setState({ participantList: temp})
+        })
         this.socket.on("Creative-Instruction-Done", () =>{
-            this.setState({ Reading: true })
-            this.handleReadingTime()
+            this.setState({ creativeInstruction: false, creativeTask: true })
+            this.setState({ chattime: Date.now() })
         })
         this.socket.on("adtitle", (title) => {
             this.setState({ title: title })
@@ -140,7 +141,6 @@ export default class main extends Component {
             }
             this.setState({ survey: true, creativeTask: false })
         })
-        this.handleReading = this.handleReading.bind(this)
         this.handleSurvey = this.handleSurvey.bind(this)
         this.handleFinishWaiting = this.handleFinishWaiting.bind(this)
         this.handleUnaccept = this.handleUnaccept.bind(this)
@@ -150,7 +150,7 @@ export default class main extends Component {
 
     componentDidMount = () => {
         window.addEventListener('beforeunload', function (e) {
-            e.preventDefault();
+            e.preventDefault(); 
             e.returnValue = ' ';
         });
         window.addEventListener('unload', function (e) {
@@ -159,11 +159,6 @@ export default class main extends Component {
 
     handleMturk = (id) => {
         this.setState({ MTurkID: id })
-    }
-
-    handleReading = () => {
-        this.setState({ Reading: false, creativeInstruction: false, creativeTask:true, reading_notification: true })
-        this.setState({ chattime: Date.now() })
     }
 
     handleFinishWaiting = () => {
@@ -187,10 +182,6 @@ export default class main extends Component {
         this.setState({ accepttime: Date.now(), ready_notification: true })
     }
 
-    handleReadingTime = () => {
-        this.setState({ readingtime: Date.now() })
-    }
-
     handlePermission = () => {
         if (this.state.ask_permission){
             this.setState({ ask_permission: false})
@@ -212,12 +203,6 @@ export default class main extends Component {
                 /> : <></>}
                 {this.state.ready_notification ? <WebNotification
                     title="The Task is Ready!" // the title prop is required
-                    icon = {icon}
-                    body="Please come back to the website to proceed."
-                    timeout={9000}
-                /> : <></>}
-                {this.state.reading_notification ? <WebNotification
-                    title="Reading Time is Over!" // the title prop is required
                     icon = {icon}
                     body="Please come back to the website to proceed."
                     timeout={9000}
@@ -249,9 +234,7 @@ export default class main extends Component {
                     process = {this.state.creativeInstruction}
                     socket = {this.socket}
                     playerList = {this.state.Creative_Instruction}
-                    reading = {this.state.Reading}
-                    handleReading = {this.handleReading}
-                    readingtime = {this.state.readingtime}
+                    participantList = {this.state.participantList}
                 />
                 <CreativeTask
                     process = {this.state.creativeTask}
@@ -259,6 +242,7 @@ export default class main extends Component {
                         this.socket.emit("send", Name, Msg, Time, Reply)
                     }}
                     msgList = {this.state.msgList}
+                    participantList = {this.state.participantList}
                     nameList = {this.state.nameList}
                     name = {this.state.playerName}
                     roomName = {this.state.roomName}

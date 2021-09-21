@@ -15,6 +15,9 @@
     width: 50vw;
     align-items: left;
 }
+.keyword {
+    font-size: 2.5vh;
+}
 .Space {
     width: 30vw;
 }
@@ -258,24 +261,22 @@
     padding-left: 2vw;
     padding-right: 2vw;
 }
-.adtitle {
+.adTitleBox {
     width: 18vw;
     height: 9vh;
+    padding: 5px;
+    overflow-y: auto;
     font-family: "Roboto";
+    word-wrap: break-word;
+    white-space:pre-wrap;
     font-style: normal;
     font-weight: normal;
-    font-size: 2.2vh;
-    padding: 5px;
-    text-align: center;
+    font-size: 2vh;
+    text-align: justify;
     border: 1px solid #222222;
     box-sizing: border-box;
     border-radius: 15px;
-    align-items: center;
-    justify-content: center;
     margin-bottom: 7px;
-    overflow-y: auto;
-    word-wrap: break-word;
-    white-space:pre-wrap;
 }
 .adDescription {
     width: 18vw;
@@ -287,8 +288,8 @@
     white-space:pre-wrap;
     font-style: normal;
     font-weight: normal;
-    font-size: 2.2vh;
-    text-align: center;
+    font-size: 2vh;
+    text-align: justify;
     border: 1px solid #222222;
     box-sizing: border-box;
     border-radius: 15px;
@@ -474,6 +475,10 @@
     align-items: center;
     width: 18vw;
     height: 5vh;
+}
+.participantsBox{
+    height: 18vh;
+    overflow-y: auto;
 }
 .AnswerInput {
     margin-left: 20px;

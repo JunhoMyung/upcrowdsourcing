@@ -3,12 +3,14 @@ import './Chat.css'
 import InputBase from '@material-ui/core/InputBase';
 import SendBtn from "../Images/SendBtn.png"
 import Bunny from "../Images/Bunny.png"
-import Kitty from "../Images/Kitty.png"
-import Puppy from "../Images/Puppy.png"
+import Deer from "../Images/Deer.png"
+import Owl from "../Images/Owl.png"
+import Bear from "../Images/Bear.png"
+import Raccoon from "../Images/Raccoon.png"
 import Squirrel from "../Images/Squirrel.png"
 import Countdown from 'react-countdown';
 import ChatRender from '../Chat'
-import InstructionModalBtn from './InstructionModalBtn'
+import InstructionModal from './InstructionModal'
 
 
 export default class Chat extends Component {
@@ -16,16 +18,16 @@ export default class Chat extends Component {
     state = {
         title: "",
         description: "",
-        btn: false,
-        btn1: false,
-        btn2: false,
-        btn3: false,
+        greeting: false,
+        greeting2: false,
         confirmation: false,
         confirmationName: "",
         answered: false,
         bunny: "null",
-        kitty: "null",
-        puppy: "null",
+        deer: "null",
+        owl: "null",
+        bear: "null",
+        raccoon: "null",
         squirrel: "null",
     }    
 
@@ -35,17 +37,9 @@ export default class Chat extends Component {
         this.keyPressTitle = this.keyPressTitle.bind(this)
         this.sendDescription = this.sendDescription.bind(this)
         this.keyPressDescription = this.keyPressDescription.bind(this)
-        this.nextBtn1 = this.nextBtn1.bind(this)
-        this.nextBtn2 = this.nextBtn2.bind(this)
-        this.prevBtn2 = this.prevBtn2.bind(this)
-        this.nextBtn3 = this.nextBtn3.bind(this)
-        this.prevBtn3 = this.prevBtn3.bind(this)
-        this.nextBtn4 = this.nextBtn4.bind(this)
-        this.prevBtn4 = this.prevBtn4.bind(this)
-        this.closeBtn1 = this.closeBtn2.bind(this)
-        this.closeBtn2 = this.closeBtn3.bind(this)
-        this.closeBtn3 = this.closeBtn3.bind(this)
-        this.closeBtn4 = this.closeBtn4.bind(this)
+        this.nextGreeting1 = this.nextGreeting1.bind(this)
+        this.nextGreeting2 = this.nextGreeting2.bind(this)
+        this.prevGreeting2 = this.prevGreeting2.bind(this)
         this.props.socket.on("confirmation", (name) => {
             this.setState({ confirmation: true, confirmationName: name })
         })
@@ -53,11 +47,17 @@ export default class Chat extends Component {
             if (name === "Bunny"){
                 this.setState({ bunny: true })
             }
-            else if (name === "Kitty"){
-                this.setState({ kitty: true })
+            else if (name === "Deer"){
+                this.setState({ deer: true })
             }
-            else if (name === "Puppy"){
-                this.setState({ puppy: true })
+            else if (name === "Owl"){
+                this.setState({ owl: true })
+            }
+            else if (name === "Bear"){
+                this.setState({ bear: true })
+            }
+            else if (name === "Raccoon"){
+                this.setState({ raccoon: true })
             }
             else {
                 this.setState({ squirrel: true })
@@ -67,11 +67,17 @@ export default class Chat extends Component {
             if (name === "Bunny"){
                 this.setState({ bunny: false })
             }
-            else if (name === "Kitty"){
-                this.setState({ kitty: false })
+            else if (name === "Deer"){
+                this.setState({ deer: false })
             }
-            else if (name === "Puppy"){
-                this.setState({ puppy: false })
+            else if (name === "Owl"){
+                this.setState({ owl: false })
+            }
+            else if (name === "Bear"){
+                this.setState({ bear: false })
+            }
+            else if (name === "Raccoon"){
+                this.setState({ raccoon: false })
             }
             else {
                 this.setState({ squirrel: false })
@@ -83,51 +89,29 @@ export default class Chat extends Component {
                 confirmationName: "",
                 answered: false,
                 bunny: "null",
-                kitty: "null",
-                puppy: "null",
+                deer: "null",
+                owl: "null",
+                bear: "null",
+                raccoon: "null",
                 squirrel: "null",
             })
         })
     }
 
-    nextBtn1 = () => {
-        this.setState({ btn: false, btn2: true })
+    nextGreeting1 = () => {
+        this.setState({ greeting: false, greeting2: true })
     }
 
-    prevBtn2 = () => {
-        this.setState({ btn: true, btn2: false })
+    prevGreeting2 = () => {
+        this.setState({ greeting: true, greeting2: false })
     }
 
-    nextBtn2 = () => {
-        this.setState({ btn2: false, btn3: true })
-    }
-
-    prevBtn3 = () => {
-        this.setState({ btn2: true, btn3: false })
-    }
-
-    nextBtn3 = () => {
-        this.setState({ btn3: false, btn4: true })
-        
-    }
-    prevBtn4 = () => {
-        this.setState({ btn3: true, btn4: false })
-    }
-    nextBtn4 = () => {
-        this.setState({ btn4: false })
-    }
-
-    closeBtn1 = () => {
-        this.setState({ btn: false })
-    }
-    closeBtn2 = () => {
-        this.setState({ btn2: false })
-    }
-    closeBtn3 = () => {
-        this.setState({ btn3: false })
-    }
-    closeBtn4 = () => {
-        this.setState({ btn4: false })
+    nextGreeting2 = () => {
+        this.setState({ greeting2: false })
+        if(this.state.init){
+            this.props.socket.emit("Creative-Instruction")
+            this.setState({ init: false })
+        }
     }
 
 
@@ -159,7 +143,14 @@ export default class Chat extends Component {
     
     participants() {
         var participants = []
-        var list = {Bunny: Bunny, Kitty: Kitty, Puppy: Puppy, Squirrel: Squirrel}
+        var list = {
+            Bunny: Bunny,
+            Bear: Bear,
+            Raccoon: Raccoon,
+            Squirrel: Squirrel,
+            Owl: Owl,
+            Deer: Deer
+        }
         participants.push(
             <tr>
                 <td className = "participant_pic">
@@ -170,15 +161,15 @@ export default class Chat extends Component {
                 </td>
             </tr>
         )
-        for (var i = 0; i < 4; i++){
-            if (Object.keys(list)[i] !== this.props.name){
+        for (var i = 0; i < this.props.participantList.length; i++){
+            if (this.props.participantList[i] !== this.props.name){
                 participants.push(
                     <tr>
                         <td className = "participant_pic">
-                            <img className = "myPic" src={list[Object.keys(list)[i]]} alt = ""/>
+                            <img className = "myPic" src={list[this.props.participantList[i]]} alt = ""/>
                         </td>
                         <td className = "participant_name">
-                            {Object.keys(list)[i]}
+                            {this.props.participantList[i]}
                         </td>
                     </tr>
                 )
@@ -215,7 +206,7 @@ export default class Chat extends Component {
 
 
     handleSubmit = () => {
-        if ((Date.now() - this.props.time) < 240000){
+        if ((Date.now() - this.props.time) > 240000){
             alert("For the sake of the experiment, you can only submit the answer after 4 minutes have passed. Please discuss more and decide!")
         }
         else if (this.state.confirmation){
@@ -236,50 +227,48 @@ export default class Chat extends Component {
         this.setState({ answered: true })
     }
 
-    kittyAgree = () => {
-        if(this.state.kitty === "null"){
-            return(<i className="fas fa-ellipsis-h undecided"></i>)
+    renderConfirmationParticipant = () => {
+        var temp = {
+            Bunny: this.state.bunny,
+            Deer: this.state.deer,
+            Owl: this.state.owl,
+            Raccoon: this.state.raccoon,
+            Bear: this.state.bear,
+            Squirrel: this.state.squirrel
         }
-        else if (this.state.kitty === true){
-            return(<i className="fas fa-check agree"></i>)
+        var msg = []
+        for(var i = 0; i < this.props.participantList.length; i++){
+            if (temp[this.props.participantList[i]] === "null"){
+                msg.push(
+                    <td className = "agreeStatus">
+                        {this.props.participantList[i]}
+                        <br/>
+                        <i className="fas fa-ellipsis-h undecided"></i>
+                    </td>
+                )
+            }
+            else if (temp[this.props.participantList[i]]){
+                msg.push(
+                    <td className = "agreeStatus">
+                        {this.props.participantList[i]}
+                        <br/>
+                        <i className="fas fa-check agree"></i>
+                    </td>
+                )
+            }
+            else {
+                msg.push(
+                    <td className = "agreeStatus">
+                        {this.props.participantList[i]}
+                        <br/>
+                        <i className="fas fa-times disagree"></i>
+                    </td>
+                )
+            }
         }
-        else{
-            return(<i className="fas fa-times disagree"></i>)
-        }
+        return(msg)
     }
-    puppyAgree = () => {
-        if(this.state.puppy === "null"){
-            return(<i className="fas fa-ellipsis-h undecided"></i>)
-        }
-        else if (this.state.puppy === true){
-            return(<i className="fas fa-check agree"></i>)
-        }
-        else{
-            return(<i className="fas fa-times disagree"></i>)
-        }
-    }
-    squirrelAgree = () => {
-        if(this.state.squirrel === "null"){
-            return(<i className="fas fa-ellipsis-h undecided"></i>)
-        }
-        else if (this.state.squirrel === true){
-            return(<i className="fas fa-check agree"></i>)
-        }
-        else{
-            return(<i className="fas fa-times disagree"></i>)
-        }
-    }
-    bunnyAgree = () => {
-        if(this.state.bunny === "null"){
-            return(<i className="fas fa-ellipsis-h undecided"></i>)
-        }
-        else if (this.state.bunny === true){
-            return(<i className="fas fa-check agree"></i>)
-        }
-        else{
-            return(<i className="fas fa-times disagree"></i>)
-        }
-    }
+
 
     renderConfirmation = () => {
         if(this.state.confirmation){
@@ -289,7 +278,7 @@ export default class Chat extends Component {
                         {this.state.confirmationName} requested for submission.
                         <br/>
                         <br/>
-                        Do you agree with current Title and Description?
+                        Do you agree with current Title and Plot?
                         <br/>
                         <table>
                             <tbody>
@@ -315,26 +304,7 @@ export default class Chat extends Component {
                         <table>
                             <tbody>
                                 <tr>
-                                    <td className = "agreeStatus">
-                                        Puppy
-                                        <br/>
-                                        {this.puppyAgree()}
-                                    </td>
-                                    <td className = "agreeStatus">
-                                        Kitty
-                                        <br/>
-                                        {this.kittyAgree()}
-                                    </td>
-                                    <td className = "agreeStatus">
-                                        Bunny
-                                        <br/>
-                                        {this.bunnyAgree()}
-                                    </td>
-                                    <td className = "agreeStatus">
-                                        Squirrel
-                                        <br/>
-                                        {this.squirrelAgree()}
-                                    </td>
+                                    {this.renderConfirmationParticipant()}
                                 </tr>
                             </tbody>
                         </table>
@@ -354,22 +324,12 @@ export default class Chat extends Component {
             
             return (
                 <>
-                <InstructionModalBtn
-                    open = {this.state.btn}
-                    page2 = {this.state.btn2}
-                    page3 = {this.state.btn3}
-                    page4 = {this.state.btn4}
-                    handleNext1 = {this.nextBtn1}
-                    handlePrev2 = {this.prevBtn2}
-                    handleNext2 = {this.nextBtn2}
-                    handleNext3 = {this.nextBtn3}
-                    handlePrev3 = {this.prevBtn3}
-                    handleNext4 = {this.nextBtn4}
-                    handlePrev4 = {this.prevBtn4}
-                    handleClose1 = {this.closeBtn1}
-                    handleClose2 = {this.closeBtn2}
-                    handleClose3 = {this.closeBtn3}
-                    handleClose4 = {this.closeBtn4}
+                <InstructionModal
+                    open = {this.state.greeting}
+                    page2 = {this.state.greeting2}
+                    handleNext1 = {this.nextGreeting1}
+                    handlePrev2 = {this.prevGreeting2}
+                    handleNext2 = {this.nextGreeting2}
                 />
                 {this.renderConfirmation()}
                 <div style = {{ backgroundColor: "#FAFAFA"}}>
@@ -379,11 +339,11 @@ export default class Chat extends Component {
                                 <tr>
                                     <td className = "Title"> 
                                         {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                        Creating Google Ads
+                                        Creating Movie Plot &nbsp;&nbsp;&nbsp;&nbsp; <span className = "keyword">(Keywords: <b className = "blue">Magic, Piano, and Coffee</b>)</span>
                                     </td>
                                     <td className = "Space"></td>
                                     <td className = "Instruction">
-                                        <div className = "InstructionBtn" onClick = {() => {this.setState({ btn: true })}}>Instruction</div>
+                                        <div className = "InstructionBtn" onClick = {() => {this.setState({ greeting: true })}}>Instruction</div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -398,7 +358,7 @@ export default class Chat extends Component {
                                             <tbody>
                                                 <tr>
                                                     <td className = "TimerInt" colSpan = {2}>
-                                                        Time Left : <span className = "blue"><Countdown date={this.props.time + 420000} renderer={this.renderer} /></span>
+                                                        Time Left : <span className = "blue"><Countdown date={this.props.time + 100000000} renderer={this.renderer} /></span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -406,7 +366,17 @@ export default class Chat extends Component {
                                                         Participants
                                                     </td>
                                                 </tr>
-                                                {this.participants()}
+                                                <tr>
+                                                    <td>
+                                                        <div className = "participantsBox">
+                                                            <table>
+                                                                <tbody>
+                                                                    {this.participants()}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                                 <tr>
                                                     <td colSpan = {2} className = "heading2Int">
                                                         Title
@@ -414,7 +384,7 @@ export default class Chat extends Component {
                                                 </tr>
                                                 <tr>
                                                     <td colSpan = {2}>
-                                                        <div className = "adtitle">
+                                                        <div className = "adTitleBox">
                                                             {this.props.title}
                                                         </div>
                                                     </td>
@@ -436,7 +406,7 @@ export default class Chat extends Component {
                                                 </tr>
                                                 <tr>
                                                     <td colSpan = {2} className = "heading2Int">
-                                                        Description
+                                                        Plot
                                                     </td>
                                                 </tr>
                                                 <tr>

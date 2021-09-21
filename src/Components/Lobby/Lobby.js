@@ -15,6 +15,7 @@ export default class Lobby extends Component {
         greeting4: false,
         accept: false,
         permission: false,
+        init: true,
     }
 
     constructor(props) {
@@ -64,8 +65,11 @@ export default class Lobby extends Component {
 
     nextGreeting4 = () => {
         this.setState({ greeting4: false })
-        this.props.socket.emit("ready")
-        this.props.handleWaitTime()
+        if (this.state.init){
+            this.props.socket.emit("ready")
+            this.props.handleWaitTime()
+            this.setState({ init: false })
+        }
     }
 
     closeAccept1 = () => {
@@ -90,6 +94,8 @@ export default class Lobby extends Component {
                     <PersonOutlineIcon fontSize="large"/>
                     <PersonOutlineIcon fontSize="large"/>
                     <PersonOutlineIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
                 </>
             )
         }
@@ -98,6 +104,8 @@ export default class Lobby extends Component {
                 <>
                     <PersonIcon fontSize="large"/>
                     <PersonIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
                     <PersonOutlineIcon fontSize="large"/>
                     <PersonOutlineIcon fontSize="large"/>
                 </>
@@ -110,12 +118,40 @@ export default class Lobby extends Component {
                     <PersonIcon fontSize="large"/>
                     <PersonIcon fontSize="large"/>
                     <PersonOutlineIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
                 </>
             )
         }
         else if(this.props.playerList === 4){
             return(
                 <>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
+                </>
+            )
+        }
+        else if(this.props.playerList === 5){
+            return(
+                <>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
+                </>
+            )
+        }
+        else if(this.props.playerList === 6){
+            return(
+                <>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
                     <PersonIcon fontSize="large"/>
                     <PersonIcon fontSize="large"/>
                     <PersonIcon fontSize="large"/>
@@ -189,6 +225,7 @@ export default class Lobby extends Component {
                                         </td>
                                         <td className = "Space"></td>
                                         <td className = "Instruction">
+                                            <div className = "InstructionBtn" onClick = {() => this.setState({ greeting: true })}>Instruction</div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -202,7 +239,7 @@ export default class Lobby extends Component {
                                             Remaining Time
                                             <br/>
                                             <div className="timer">
-                                                <Countdown date={this.props.waittime + 1200000} renderer={this.renderer}/>
+                                                <Countdown date={this.props.waittime + 1800000} renderer={this.renderer}/>
                                             </div>
                                         </td>
                                     </tr>

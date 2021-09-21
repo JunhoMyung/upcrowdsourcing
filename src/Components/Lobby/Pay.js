@@ -49,10 +49,10 @@ export default class Pay extends Component {
                                             We're sorry to say that 4 members didn't join the room in 20 minutes.
                                             <br/>
                                             <br/>
-                                            We would still pay you for the waiting time ($2 for 20 minutes), so please note down the survey code below.
+                                            We would still pay you for the waiting time ($2), so please note down the survey code below.
                                             <br/>
                                             <br/>
-                                            The survey code is: {this.props.roomName}
+                                            The survey code is: <b className = "blue">FinishedWaiting</b>
                                             <br/>
                                             <br/>
                                             Thank you for your participation, and have a good day!

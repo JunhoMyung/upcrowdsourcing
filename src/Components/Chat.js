@@ -3,8 +3,10 @@ import InputBase from '@material-ui/core/InputBase';
 import SendBtn from "./Images/SendBtn.png"
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import Bunny from "./Images/Bunny.png"
-import Kitty from "./Images/Kitty.png"
-import Puppy from "./Images/Puppy.png"
+import Deer from "./Images/Deer.png"
+import Owl from "./Images/Owl.png"
+import Bear from "./Images/Bear.png"
+import Raccoon from "./Images/Raccoon.png"
 import Squirrel from "./Images/Squirrel.png"
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
@@ -328,6 +330,14 @@ export default class Chat extends Component {
 
     renderMsg = () => {
         var msg = []
+        var list = {
+            Bunny: Bunny,
+            Bear: Bear,
+            Raccoon: Raccoon,
+            Squirrel: Squirrel,
+            Owl: Owl,
+            Deer: Deer
+        }
         for (var i = 0; i < this.props.msgList.length; i ++){
             const temp = "index" + i
             if (this.props.nameList[i] === this.props.nameList[i - 1]) {
@@ -491,733 +501,185 @@ export default class Chat extends Component {
                 }
             }
             else if (this.props.nameList[i] === this.props.name){
-                if (this.props.name === "Kitty"){
-                    if (this.isOnlyEmojis(this.props.msgList[i])){
-                        msg.push(
-                            <>
-                            <tr>
-                                <td className = "yourName">
-                                </td>
-                                <td className = "myMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameMe" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "myTimezoneEmoji">
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                                <td className = "myMsgEmojiFirst" id = {i}>
-                                                    {this.printMsg(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                                <td className = "myName">
-                                    <img className = "myPic" src={Kitty} alt = ""/>
-                                </td>
-                            </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "myReaction myMsg" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
-                    else{
-                        msg.push(
-                            <>
-                            <tr>
-                                <td className = "yourName">
-                                </td>
-                                <td className = "myMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameMe" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "myTimezone">
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                                <td className = "myMsgDiv" id = {i}>
-                                                    {this.printMsg(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                                <td className = "myName">
-                                    <img className = "myPic" src={Kitty} alt = ""/>
-                                </td>
-                            </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "myReaction myMsg" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
-                }
-                else if (this.props.name === "Bunny"){
-                    if (this.isOnlyEmojis(this.props.msgList[i])){
-                        msg.push(
-                            <>
-                            <tr>
-                                <td className = "yourName">
-                                </td>
-                                <td className = "myMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameMe" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "myTimezoneEmoji">
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                                <td className = "myMsgEmojiFirst" id = {i}>
-                                                    {this.printMsg(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                                <td className = "myName">
-                                    <img className = "myPic" src={Bunny} alt = ""/>
-                                </td>
-                            </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "myReaction myMsg" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
-                    else{
-                        msg.push(
-                            <>
-                            <tr>
-                                <td className = "yourName">
-                                </td>
-                                <td className = "myMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameMe" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "myTimezone">
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                                <td className = "myMsgDiv" id = {i}>
-                                                    {this.printMsg(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                                <td className = "myName">
-                                    <img className = "myPic" src={Bunny} alt = ""/>
-                                </td>
-                            </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "myReaction myMsg" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
-                }
-                else if (this.props.name === "Puppy"){
-                    if (this.isOnlyEmojis(this.props.msgList[i])){
-                        msg.push(
-                            <>
+                if (this.isOnlyEmojis(this.props.msgList[i])){
+                    msg.push(
+                        <>
+                        <tr>
+                            <td className = "yourName">
+                            </td>
+                            <td className = "myMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td className = "nameMe" colSpan = {2}>
+                                                {this.props.nameList[i]}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className = "myTimezoneEmoji">
+                                                {this.renderMyDate(i)}
+                                            </td>
+                                            <td className = "myMsgEmojiFirst" id = {i}>
+                                                {this.printMsg(i)}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td className = "myName">
+                                <img className = "myPic" src={list[this.props.name]} alt = ""/>
+                            </td>
+                        </tr>
+                        {Object.keys(this.props.reactionList).includes(i.toString()) ? (
                             <tr>
                                 <td className = "yourName"></td>
-                                <td className = "myMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameMe" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "myTimezoneEmoji">
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                                <td className = "myMsgEmojiFirst" id = {i}>
-                                                    {this.printMsg(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <td className = "myReaction myMsg" colSpan = {2}>
+                                    {this.renderMyReaction(i)}
                                 </td>
                                 <td className = "myName">
-                                    <img className = "myPic" src={Puppy} alt = ""/>
                                 </td>
                             </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "myReaction myMsg" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
-                    else{
-                        msg.push(
+                        ) : (
                             <>
+                            </>
+                        )}
+                        </>
+                    )
+                }
+                else{
+                    msg.push(
+                        <>
+                        <tr>
+                            <td className = "yourName">
+                            </td>
+                            <td className = "myMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td className = "nameMe" colSpan = {2}>
+                                                {this.props.nameList[i]}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className = "myTimezone">
+                                                {this.renderMyDate(i)}
+                                            </td>
+                                            <td className = "myMsgDiv" id = {i}>
+                                                {this.printMsg(i)}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td className = "myName">
+                                <img className = "myPic" src={list[this.props.name]} alt = ""/>
+                            </td>
+                        </tr>
+                        {Object.keys(this.props.reactionList).includes(i.toString()) ? (
                             <tr>
                                 <td className = "yourName"></td>
-                                <td className = "myMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameMe" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "myTimezone">
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                                <td className = "myMsgDiv" id = {i}>
-                                                    {this.printMsg(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <td className = "myReaction myMsg" colSpan = {2}>
+                                    {this.renderMyReaction(i)}
                                 </td>
                                 <td className = "myName">
-                                    <img className = "myPic" src={Puppy} alt = ""/>
                                 </td>
                             </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "myReaction myMsg" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
-                }
-                else {
-                    if (this.isOnlyEmojis(this.props.msgList[i])){
-                        msg.push(
+                        ) : (
                             <>
-                            <tr>
-                                <td className = "yourName">
-                                </td>
-                                <td className = "myMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameMe" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "myTimezoneEmoji">
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                                <td className = "myMsgEmojiFirst" id = {i}>
-                                                    {this.printMsg(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                                <td className = "myName">
-                                    <img className = "myPic" src={Squirrel} alt = ""/>
-                                </td>
-                            </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "myReaction myMsg" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
                             </>
-                        )
-                    }
-                    else {
-                        msg.push(
-                            <>
-                            <tr>
-                                <td className = "yourName">
-                                </td>
-                                <td className = "myMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameMe" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "myTimezone">
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                                <td className = "myMsgDiv" id = {i}>
-                                                    {this.printMsg(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                                <td className = "myName">
-                                    <img className = "myPic" src={Squirrel} alt = ""/>
-                                </td>
-                            </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "myReaction myMsg" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
+                        )}
+                        </>
+                    )
                 }
             }
             else {
-                if (this.props.nameList[i] === "Kitty"){
-                    if (this.isOnlyEmojis(this.props.msgList[i])){
-                        msg.push(
-                            <>
+                if (this.isOnlyEmojis(this.props.msgList[i])){
+                    msg.push(
+                        <>
+                        <tr>
+                            <td className = "yourName">
+                                <img className = "myPic" src={list[this.props.nameList[i]]} alt = ""/>
+                            </td>
+                            <td className = "yourMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td className = "nameYou" colSpan = {2}>
+                                                {this.props.nameList[i]}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className = "yourMsgEmojiFirst">
+                                                {this.printMsg(i)}
+                                            </td>
+                                            <td className = "yourTimezoneEmoji" id = {i}>
+                                                {this.renderMyDate(i)}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td className = "myName"></td>
+                        </tr>
+                        {Object.keys(this.props.reactionList).includes(i.toString()) ? (
                             <tr>
-                                <td className = "yourName">
-                                    <img className = "myPic" src={Kitty} alt = ""/>
+                                <td className = "yourName"></td>
+                                <td className = "yourMsg2" colSpan = {2}>
+                                    {this.renderMyReaction(i)}
                                 </td>
-                                <td className = "yourMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameYou" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "yourMsgEmojiFirst">
-                                                    {this.printMsg(i)}
-                                                </td>
-                                                <td className = "yourTimezoneEmoji" id = {i}>
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <td className = "myName">
                                 </td>
-                                <td className = "myName"></td>
                             </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "yourMsg2" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
-                    else{
-                        msg.push(
+                        ) : (
                             <>
-                            <tr>
-                                <td className = "yourName">
-                                    <img className = "myPic" src={Kitty} alt = ""/>
-                                </td>
-                                <td className = "yourMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameYou" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "yourMsgDiv">
-                                                    {this.printMsg(i)}
-                                                </td>
-                                                <td className = "yourTimezone" id = {i}>
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                                <td className = "myName"></td>
-                            </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "yourMsg2" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
                             </>
-                        )
-                    }
+                        )}
+                        </>
+                    )
                 }
-                else if (this.props.nameList[i] === "Bunny"){
-                    if (this.isOnlyEmojis(this.props.msgList[i])){
-                        msg.push(
-                            <>
+                else{
+                    msg.push(
+                        <>
+                        <tr>
+                            <td className = "yourName">
+                                <img className = "myPic" src={list[this.props.nameList[i]]} alt = ""/>
+                            </td>
+                            <td className = "yourMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td className = "nameYou" colSpan = {2}>
+                                                {this.props.nameList[i]}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td className = "yourMsgDiv">
+                                                {this.printMsg(i)}
+                                            </td>
+                                            <td className = "yourTimezone" id = {i}>
+                                                {this.renderMyDate(i)}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td className = "myName"></td>
+                        </tr>
+                        {Object.keys(this.props.reactionList).includes(i.toString()) ? (
                             <tr>
-                                <td className = "yourName">
-                                    <img className = "myPic" src={Bunny} alt = ""/>
+                                <td className = "yourName"></td>
+                                <td className = "yourMsg2" colSpan = {2}>
+                                    {this.renderMyReaction(i)}
                                 </td>
-                                <td className = "yourMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameYou" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "yourMsgEmojiFirst">
-                                                    {this.printMsg(i)}
-                                                </td>
-                                                <td className = "yourTimezoneEmoji" id = {i}>
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <td className = "myName">
                                 </td>
-                                <td className = "myName"></td>
                             </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "yourMsg2" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
-                    else {
-                        msg.push(
+                        ) : (
                             <>
-                            <tr>
-                                <td className = "yourName">
-                                    <img className = "myPic" src={Bunny} alt = ""/>
-                                </td>
-                                <td className = "yourMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameYou" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "yourMsgDiv">
-                                                    {this.printMsg(i)}
-                                                </td>
-                                                <td className = "yourTimezone" id = {i}>
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                                <td className = "myName"></td>
-                            </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "yourMsg2" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
                             </>
-                        )
-                    }
-                }
-                else if (this.props.nameList[i] === "Puppy"){
-                    if (this.isOnlyEmojis(this.props.msgList[i])){
-                        msg.push(
-                            <>
-                            <tr>
-                                <td className = "yourName">
-                                    <img className = "myPic" src={Puppy} alt = ""/>
-                                </td>
-                                <td className = "yourMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameYou" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "yourMsgEmojiFirst">
-                                                    {this.printMsg(i)}
-                                                </td>
-                                                <td className = "yourTimezoneEmoji" id = {i}>
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                                <td className = "myName"></td>
-                            </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "yourMsg2" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
-                    else{
-                        msg.push(
-                            <>
-                            <tr>
-                                <td className = "yourName">
-                                    <img className = "myPic" src={Puppy} alt = ""/>
-                                </td>
-                                <td className = "yourMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameYou" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "yourMsgDiv">
-                                                    {this.printMsg(i)}
-                                                </td>
-                                                <td className = "yourTimezone" id = {i}>
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                                <td className = "myName"></td>
-                            </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "yourMsg2" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
-                }
-                else {
-                    if (this.isOnlyEmojis(this.props.msgList[i])){
-                        msg.push(
-                            <>
-                            <tr>
-                                <td className = "yourName">
-                                    <img className = "myPic" src={Squirrel} alt = ""/>
-                                </td>
-                                <td className = "yourMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameYou" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "yourMsgEmojiFirst">
-                                                    {this.printMsg(i)}
-                                                </td>
-                                                <td className = "yourTimezoneEmoji" id = {i}>
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                                <td className = "myName"></td>
-                            </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "yourMsg2" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
-                    else{
-                        msg.push(
-                            <>
-                            <tr>
-                                <td className = "yourName">
-                                    <img className = "myPic" src={Squirrel} alt = ""/>
-                                </td>
-                                <td className = "yourMsg" onMouseEnter = {() => this.setState({ hover: temp })} onMouseLeave = {() => this.setState({ hover: "" })}>
-                                    <table>
-                                        <tbody>
-                                            <tr>
-                                                <td className = "nameYou" colSpan = {2}>
-                                                    {this.props.nameList[i]}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td className = "yourMsgDiv">
-                                                    {this.printMsg(i)}
-                                                </td>
-                                                <td className = "yourTimezone" id = {i}>
-                                                    {this.renderMyDate(i)}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </td>
-                                <td className = "myName"></td>
-                            </tr>
-                            {Object.keys(this.props.reactionList).includes(i.toString()) ? (
-                                <tr>
-                                    <td className = "yourName"></td>
-                                    <td className = "yourMsg2" colSpan = {2}>
-                                        {this.renderMyReaction(i)}
-                                    </td>
-                                    <td className = "myName">
-                                    </td>
-                                </tr>
-                            ) : (
-                                <>
-                                </>
-                            )}
-                            </>
-                        )
-                    }
+                        )}
+                        </>
+                    )
                 }
             }
         }

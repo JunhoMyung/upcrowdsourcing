@@ -3,8 +3,10 @@ import Modal from 'react-bootstrap/Modal'
 import './Greeting.css'
 import InputBase from '@material-ui/core/InputBase';
 import Bunny from "../Images/Bunny.png"
-import Kitty from "../Images/Kitty.png"
-import Puppy from "../Images/Puppy.png"
+import Deer from "../Images/Deer.png"
+import Owl from "../Images/Owl.png"
+import Bear from "../Images/Bear.png"
+import Raccoon from "../Images/Raccoon.png"
 import Squirrel from "../Images/Squirrel.png"
 import Notification from "../Images/notification.png"
 
@@ -15,9 +17,11 @@ export default class Greeting extends Component {
         Mturk: "",
         participants: {
             Bunny: Bunny,
-            Kitty: Kitty,
-            Puppy: Puppy,
-            Squirrel: Squirrel
+            Bear: Bear,
+            Raccoon: Raccoon,
+            Squirrel: Squirrel,
+            Owl: Owl,
+            Deer: Deer,
         }
     }
 
@@ -31,30 +35,6 @@ export default class Greeting extends Component {
         }
     }
 
-    renderParticipants = () => {
-        var temp = []
-        for (var i = 0; i < 4; i ++){
-            var tempName = Object.keys(this.state.participants)[i]
-            if(tempName !== this.props.name){
-                if (temp.length === 2){
-                    temp.push(
-                        <span>
-                            and "{tempName}" <img className = "myPic" src={this.state.participants[tempName]} alt = ""/> &nbsp;
-                        </span>
-                    )
-                }
-                else {
-                    temp.push(
-                        <span>
-                            "{tempName}" <img className = "myPic" src={this.state.participants[tempName]} alt = ""/> &nbsp;
-                        </span>
-                    )
-                }
-                
-            }
-        }
-        return(temp)
-    }
 
     render() {
         return (
@@ -76,7 +56,7 @@ export default class Greeting extends Component {
                                         Thank you for participating in our task!!
                                         <br/>
                                         <br/>
-                                        To begin with, please enter your MTurk ID below.
+                                        To begin with, please enter your <b className = "blue">MTurk ID</b> below.
                                         <br/>
                                         <br/>
                                         <InputBase
@@ -122,13 +102,17 @@ export default class Greeting extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
-                                        In this task, you will be placed in a group with three other participants. Together, you will create a simple Google Ad for a given project.
+                                        In this task, you will be discussing with five other participants in a group chat to create <b className = "blue">a simple movie plot with a title.</b>
                                         <br/>
                                         <br/>
-                                        During the task, you will be called "{this.props.name}" <img className = "myPic" src={this.state.participants[this.props.name]} alt = ""/>
+                                        Some keywords you <b><u>must</u></b> include in the plot are:
                                         <br/>
+                                        <b className = "blue">Magic, Piano, and Coffee</b>
                                         <br/>
-                                        Your group members are: {this.renderParticipants()}
+                                        <br/>                                        
+                                        During the task, you will be called <b className = "blue">"{this.props.name}"</b> <img className = "myPic" src={this.state.participants[this.props.name]} alt = ""/>
+                                        <br/>
+                                        Please remember your nickname!
                                     </td>
                                 </tr>
                                 <tr>
@@ -164,16 +148,13 @@ export default class Greeting extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
-                                        The task will begin as soon as <b className = "blue">four members</b> join the room. 
+                                        The task will begin as soon as all the members join the room. 
                                         <br/>
                                         <br/>
                                         We will notify you when the task is ready, so please <br/><b className = "blue">allow notification</b> <img className = "notification" src={Notification} alt = ""/> for this website.
                                         <br/>
                                         <br/>
-                                        Also, make sure that your computer enables notification from the browser (i.e. Chrome) you are using.
-                                        <br/>
-                                        <br/>
-                                        A message will pop up when the task is ready.<br/> You <b className = "blue">MUST</b> respond to that message in <b className = "blue">90 seconds</b> to proceed.
+                                        A message will pop up when the task is ready.<br/> <b>You <b className = "blue">MUST</b> respond to that message in <b className = "blue">90 seconds</b> to proceed.</b>
                                         <br/>
                                         <br/>
                                         If you miss the message, you will not be able to proceed, and we wouldn't be able to pay you. Please be aware of this.
@@ -214,13 +195,18 @@ export default class Greeting extends Component {
                             <tbody>
                                 <tr>
                                     <td className = "greetingBody" colSpan = {3}>
-                                        If your waiting time exceeds 20 minutes, we will dismiss you and pay for the time you spent for waiting ($2 for 20 min).  
+                                        You will have <b className = "blue">10 minutes</b> to discuss with your team and <br/>submit the result.
                                         <br/>
                                         <br/>
-                                        More detailed instruction for the task will be given when the task begins.
+                                        You may be <b className = "blue">rejected or rewarded</b> depending on your participation. 
                                         <br/>
                                         <br/>
-                                        Thank you again for participating for this experiment, and good luck!!
+                                        For instance, if you fail to communicate (do not leave any chat or type in random chat messages), we will reject your HIT.
+                                        <br/>
+                                        <br/>
+                                        If you understood the instructions, please click PROCEED.
+                                        <br/>
+                                        <br/>
                                     </td>
                                 </tr>
                                 <tr>

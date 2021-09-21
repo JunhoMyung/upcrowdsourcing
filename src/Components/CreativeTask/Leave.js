@@ -28,13 +28,13 @@ export default class Leave extends Component {
                                         <td className = "bodyLobby terminate">
                                             <br/>
                                             <br/>
-                                            One of your group members have left the session, and hence we will end the session here.
+                                            All of your group members have left the session, and hence we will end the session here.
                                             <br/>
                                             <br/>
-                                            We will still grant you $3 (+ money according to waiting time) for your participation.
+                                            We will still grant you money for your participation.
                                             <br/>
                                             <br/>
-                                            The survey code is: {this.props.roomName}
+                                            The survey code is: <b className = "blue">TerminatedRoom</b>
                                             <br/>
                                             <br/>
                                             Thank you, and have a nice day!

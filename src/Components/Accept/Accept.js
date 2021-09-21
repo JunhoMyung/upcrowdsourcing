@@ -96,6 +96,8 @@ export default class Accept extends Component {
                     <PersonOutlineIcon fontSize="large"/>
                     <PersonOutlineIcon fontSize="large"/>
                     <PersonOutlineIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
                 </>
             )
         }
@@ -104,6 +106,8 @@ export default class Accept extends Component {
                 <>
                     <PersonIcon fontSize="large"/>
                     <PersonIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
                     <PersonOutlineIcon fontSize="large"/>
                     <PersonOutlineIcon fontSize="large"/>
                 </>
@@ -116,12 +120,40 @@ export default class Accept extends Component {
                     <PersonIcon fontSize="large"/>
                     <PersonIcon fontSize="large"/>
                     <PersonOutlineIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
                 </>
             )
         }
         else if(this.props.accept === 4){
             return(
                 <>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
+                </>
+            )
+        }
+        else if(this.props.accept === 5){
+            return(
+                <>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
+                    <PersonOutlineIcon fontSize="large"/>
+                </>
+            )
+        }
+        else if(this.props.accept === 6){
+            return(
+                <>
+                    <PersonIcon fontSize="large"/>
+                    <PersonIcon fontSize="large"/>
                     <PersonIcon fontSize="large"/>
                     <PersonIcon fontSize="large"/>
                     <PersonIcon fontSize="large"/>
