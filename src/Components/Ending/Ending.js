@@ -36,7 +36,7 @@ export default class Ending extends Component {
                                             The task is over! Thank you again for participating.
                                             <br/>
                                             <br/>
-                                            The survey code is: {this.props.roomName}
+                                            The survey code is: <b className = "blue">{this.props.roomName}</b>
                                             <br/>
                                             <br/>
                                             Have a good day!

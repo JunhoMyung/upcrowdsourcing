@@ -206,8 +206,8 @@ export default class Chat extends Component {
 
 
     handleSubmit = () => {
-        if ((Date.now() - this.props.time) > 240000){
-            alert("For the sake of the experiment, you can only submit the answer after 4 minutes have passed. Please discuss more and decide!")
+        if ((Date.now() - this.props.time) < 360000){
+            alert("For the sake of the experiment, you can only submit the answer after 6 minutes have passed. Please discuss more and decide!")
         }
         else if (this.state.confirmation){
             alert("Submission already in progress")
@@ -358,7 +358,7 @@ export default class Chat extends Component {
                                             <tbody>
                                                 <tr>
                                                     <td className = "TimerInt" colSpan = {2}>
-                                                        Time Left : <span className = "blue"><Countdown date={this.props.time + 100000000} renderer={this.renderer} /></span>
+                                                        Time Left : <span className = "blue"><Countdown date={this.props.time + 600000} renderer={this.renderer} /></span>
                                                     </td>
                                                 </tr>
                                                 <tr>

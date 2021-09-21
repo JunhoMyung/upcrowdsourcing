@@ -46,7 +46,7 @@ export default class Pay extends Component {
                                         <td className = "bodyLobby">
                                             <br/>
                                             <br/>
-                                            We're sorry to say that 4 members didn't join the room in 20 minutes.
+                                            We're sorry to say that 6 members didn't join the room in 30 minutes.
                                             <br/>
                                             <br/>
                                             We would still pay you for the waiting time ($2), so please note down the survey code below.
