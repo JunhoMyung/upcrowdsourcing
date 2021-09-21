@@ -135,7 +135,7 @@ export default class main extends Component {
             this.setState({ description: description })
         })
         this.socket.on("finish", () => {
-            if(this.state.playerName === "Bunny"){
+            if(this.state.playerName === this.state.participantList[0]){
                 db.ref('/' + this.state.roomName + '/reaction/').push(this.state.reactionList)
                 db.ref('/' + this.state.roomName + '/answer/').push({title: this.state.title, description: this.state.description})
             }
